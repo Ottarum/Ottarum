@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Trippy Visuals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030808;
+            --orange: #ff5e00;
+            --red: #a30000;
+        }
+
+        body, html {
+            background-color: var(--bg);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* CAPA DE GRANO TRIPPY */
+        .grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.18;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_ext_noise.png');
+            animation: grainAnim 0.8s steps(10) infinite;
+        }
+
+        @keyframes grainAnim {
+            0%, 100% { transform:translate(0,0) }
+            10% { transform:translate(-5%,-5%) }
+            30% { transform:translate(5%,-10%) }
+            50% { transform:translate(-15%,5%) }
+            70% { transform:translate(10%,10%) }
+            90% { transform:translate(-5%,15%) }
+        }
+
+        /* GRADIENTES DE FONDO (LUZ) */
+        .flare {
+            position: fixed;
+            width: 80vw; height: 80vw;
+            background: radial-gradient(circle, var(--orange) 0%, transparent 70%);
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            bottom: -20%; right: -10%;
+        }
+
+        /* SECCIONES DE SCROLL */
+        section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10%;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 10px; }
+        p { color: var(--orange); font-weight: 300; font-size: 1.2rem; }
+
+        .media-container {
+            width: 100%; max-width: 800px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin-top: 30px;
+        }
+
+        img, video { width: 100%; display: block; }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    <div class="flare"></div>
+
+    <section id="hero">
+        <h1>CREATIVO VISUAL</h1>
+        <p>Renders • Videos • Trippy Art</p>
+    </section>
+
+    <section>
+        <div class="media-container">
+            <!-- REEMPLAZA ESTO CON TUS RENDERS -->
+            <img src="https://via.placeholder.com/1200x800/051010/ff5e00?text=TU+RENDER+AQUÍ" alt="Proyecto 1">
+        </div>
+        <h3>Proyecto 01: Atmosferas de Grano</h3>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
