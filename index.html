@@ -3,113 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Trippy Visuals</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
+    <title>Ottarum // 3D Digital Artist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         :root {
-            --bg: #030808;
-            --orange: #ff5e00;
-            --red: #a30000;
+            --bg-dark: #030708;
+            --accent-orange: #ff5f00;
+            --accent-cyan: #00f5ff;
+            --text-muted: #8a99ad;
         }
 
-        body, html {
-            background-color: var(--bg);
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            margin: 0; padding: 0;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
         }
 
-        /* CAPA DE GRANO TRIPPY */
-        .grain {
+        /* Capa de Grano Trippy Global */
+        .noise-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 9999;
             pointer-events: none;
-            opacity: 0.18;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_ext_noise.png');
-            animation: grainAnim 0.8s steps(10) infinite;
+            z-index: 9999;
+            opacity: 0.12;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
         }
 
-        @keyframes grainAnim {
-            0%, 100% { transform:translate(0,0) }
-            10% { transform:translate(-5%,-5%) }
-            30% { transform:translate(5%,-10%) }
-            50% { transform:translate(-15%,5%) }
-            70% { transform:translate(10%,10%) }
-            90% { transform:translate(-5%,15%) }
+        /* Ambiente de Luces de Fondo */
+        .glow-orange {
+            position: fixed; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255, 95, 0, 0.15) 0%, transparent 70%);
+            top: -200px; left: -100px; z-index: -1; pointer-events: none; filter: blur(80px);
+        }
+        .glow-cyan {
+            position: fixed; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0, 245, 255, 0.1) 0%, transparent 70%);
+            bottom: -100px; right: -100px; z-index: -1; pointer-events: none; filter: blur(80px);
         }
 
-        /* GRADIENTES DE FONDO (LUZ) */
-        .flare {
-            position: fixed;
-            width: 80vw; height: 80vw;
-            background: radial-gradient(circle, var(--orange) 0%, transparent 70%);
-            filter: blur(120px);
-            opacity: 0.15;
-            z-index: -1;
-            bottom: -20%; right: -10%;
-        }
+        /* Estilos de Secciones */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
+        
+        section { padding: 120px 0; min-height: 100vh; display: flex; align-items: center; }
 
-        /* SECCIONES DE SCROLL */
-        section {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0 10%;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease-out;
-        }
+        /* HERO SECTION */
+        #hero { position: relative; height: 100vh; padding: 0; display: flex; justify-content: center; align-items: center; text-align: center;}
+        .hero-title { font-family: 'Syne', sans-serif; font-size: 8vw; font-weight: 800; line-height: 0.9; text-transform: uppercase; letter-spacing: -3px; background: linear-gradient(180deg, #fff 40%, var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: 1.5rem; margin-top: 20px; color: var(--accent-orange); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; }
 
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* ARSENAL / SOFTWARE */
+        #arsenal h2, #gallery h2, #downloads h2 { font-family: 'Syne', sans-serif; font-size: 3rem; margin-bottom: 60px; text-transform: uppercase; border-left: 5px solid var(--accent-orange); padding-left: 20px; }
+        
+        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; width: 100%; }
+        .software-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 40px 20px; border-radius: 16px; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .software-card:hover { border-color: var(--accent-cyan); transform: translateY(-5px); background: rgba(0, 245, 255, 0.02); }
+        .software-card i { font-size: 3.5rem; color: #fff; margin-bottom: 15px; display: block; }
+        .software-card h3 { font-size: 1.4rem; font-weight: 500; }
+        .software-card p { color: var(--text-muted); font-size: 0.9rem; margin-top: 5px; }
 
-        h1 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 10px; }
-        p { color: var(--orange); font-weight: 300; font-size: 1.2rem; }
+        /* GALERÍA INTERACTIVA */
+        .project-row { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; margin-bottom: 150px; align-items: center; opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+        .project-row.reveal { opacity: 1; transform: translateY(0); }
+        
+        .media-box { background: #0b1112; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 16/9; position: relative; }
+        .media-box img, .media-box video { width: 100%; height: 100%; object-fit: cover; }
+        
+        .tech-data { padding: 20px; font-family: monospace; font-size: 0.95rem; color: var(--accent-cyan); background: rgba(0,0,0,0.3); border-radius: 12px; border-left: 3px solid var(--accent-cyan); }
+        .tech-data h3 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: #fff; margin-bottom: 15px; text-transform: uppercase; }
+        .tech-data ul { list-style: none; margin-top: 15px; }
+        .tech-data li { margin-bottom: 8px; color: var(--text-muted); }
+        .tech-data li strong { color: #fff; }
 
-        .media-container {
-            width: 100%; max-width: 800px;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            margin-top: 30px;
-        }
+        /* WALLPAPERS / DOWNLOADS */
+        .wallpaper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .wallpaper-card { border-radius: 16px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.1); group; aspect-ratio: 9/16;}
+        .wallpaper-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .wallpaper-card:hover img { transform: scale(1.05); }
+        .download-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); display: flex; justify-content: space-between; align-items: center; }
+        .btn-download { background: var(--accent-orange); color: #fff; border: none; padding: 12px 20px; border-radius: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-decoration: none; cursor: pointer; transition: background 0.3s; font-size: 0.9rem; text-transform: uppercase;}
+        .btn-download:hover { background: #fff; color: var(--bg-dark); }
 
-        img, video { width: 100%; display: block; }
+        /* SOCIAL FOOTER */
+        footer { padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .social-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; }
+        .social-links a { color: #fff; font-size: 2rem; transition: color 0.3s; text-decoration: none; }
+        .social-links a:hover { color: var(--accent-orange); }
+        footer p { color: var(--text-muted); font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <div class="grain"></div>
-    <div class="flare"></div>
+
+    <div class="noise-overlay"></div>
+    <div class="glow-orange"></div>
+    <div class="glow-cyan"></div>
 
     <section id="hero">
-        <h1>CREATIVO VISUAL</h1>
-        <p>Renders • Videos • Trippy Art</p>
+        <div class="container">
+            <h1 class="hero-title">OTTARUM</h1>
+            <p class="hero-subtitle">3D Artist & Digital Alchemist</p>
+            <p style="color: var(--text-muted); max-width: 500px; margin: 25px auto 0 auto; font-size: 1.1rem;">+5 años de experiencia esculpiendo realidades e interrupciones visuales de alta fidelidad.</p>
+        </div>
     </section>
 
-    <section>
-        <div class="media-container">
-            <!-- REEMPLAZA ESTO CON TUS RENDERS -->
-            <img src="https://via.placeholder.com/1200x800/051010/ff5e00?text=TU+RENDER+AQUÍ" alt="Proyecto 1">
+    <section id="arsenal">
+        <div class="container">
+            <h2>El Arsenal Técnico</h2>
+            <div class="software-grid">
+                <div class="software-card">
+                    <i class="fa-solid fa-cube"></i>
+                    <h3>Blender</h3>
+                    <p>Core 3D & Cycles/Eevee</p>
+                </div>
+                <div class="software-card">
+                    <i class="fa-solid fa-brush"></i>
+                    <h3>Substance</h3>
+                    <p>Texturizado PBR Avanzado</p>
+                </div>
+                <div class="software-card">
+                    <i class="fa-solid fa-bezier-curve"></i>
+                    <h3>Photoshop</h3>
+                    <p>Postprocesado & Mate Painting</p>
+                </div>
+                <div class="software-card">
+                    <i class="fa-solid fa-film"></i>
+                    <h3>After Effects</h3>
+                    <p>Composición & VFX Cinéticos</p>
+                </div>
+            </div>
         </div>
-        <h3>Proyecto 01: Atmosferas de Grano</h3>
     </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2>Proyectos Seleccionados</h2>
+            
+            <div class="project-row">
+                <div class="media-box">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Render 1">
+                </div>
+                <div class="tech-data">
+                    <h3>Abstracción Orgánica 01</h3>
+                    <p>Exploración de dinámicas de fluidos congelados en alta densidad poligonal.</p>
+                    <ul>
+                        <li><strong>SOFTWARE:</strong> Blender / Substance Painter</li>
+                        <li><strong>RENDERING:</strong> Cycles (1000 samples)</li>
+                        <li><strong>WORK TIME:</strong> 24 Horas de Cómputo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-row">
+                <div class="media-box">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Render 2">
+                </div>
+                <div class="tech-data">
+                    <h3>Arquitectura Distópica</h3>
+                    <p>Modelado procedural enfocado en entornos modulares de ciencia ficción.</p>
+                    <ul>
+                        <li><strong>SOFTWARE:</strong> Blender / After Effects</li>
+                        <li><strong>TECH:</strong> Geometry Nodes</li>
+                        <li><strong>FORMAT:</strong> 4K UHD Ultra-wide</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="downloads">
+        <div class="container">
+            <h2>Free Wallpapers // HQ</h2>
+            <p style="color: var(--text-muted); margin-top: -40px; margin-bottom: 50px; font-size: 1.2rem;">Descarga mis piezas optimizadas para pantallas móviles y de escritorio sin costo.</p>
+            
+            <div class="wallpaper-grid">
+                <div class="wallpaper-card">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 1">
+                    <div class="download-overlay">
+                        <div>
+                            <h4 style="font-weight: 500;">Neon Shift</h4>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
+                        </div>
+                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+                
+                <div class="wallpaper-card">
+                    <img src="https://images.unsplash.com/photo-1618005198143-e5283b519a7f?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 2">
+                    <div class="download-overlay">
+                        <div>
+                            <h4 style="font-weight: 500;">Chrome Flow</h4>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
+                        </div>
+                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://instagram.com/tu_usuario" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://linkedin.com/in/tu_usuario" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2026 OTTARUM. Todos los derechos de las obras reservados.</p>
+        </div>
+    </footer>
 
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('section').forEach(section => observer.observe(section));
+        document.querySelectorAll('.project-row').forEach(row => {
+            observer.observe(row);
+        });
     </script>
 </body>
 </html>
