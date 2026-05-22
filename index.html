@@ -39,7 +39,19 @@
     mix-blend-mode: screen; /* Cambiado a screen para que resalte sobre el negro absoluto */
     animation: grainAnimate 0.5s steps(10) infinite; /* El motor que le da vida */
 }
-
+/* Animación orgánica para el grano vintage */
+@keyframes grainAnimate {
+    0%, 100% { transform:translate(0, 0); }
+    10% { transform:translate(-1%, -1%); }
+    20% { transform:translate(-2%, 1%); }
+    30% { transform:translate(1%, -2%); }
+    40% { transform:translate(-1%, 3%); }
+    50% { transform:translate(-2%, -1%); }
+    60% { transform:translate(3%, 0); }
+    70% { transform:translate(0, 2%); }
+    80% { transform:translate(-3%, -3%); }
+    90% { transform:translate(2%, 1%); }
+}
         /* Atmósfera de Luces Trippy de Fondo */
         .glow-orange {
             position: fixed; width: 600px; height: 600px;
