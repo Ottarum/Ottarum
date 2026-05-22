@@ -27,39 +27,24 @@
             overflow-x: hidden;
         }
 
-/* CAPA DE GRANO CINEMATOGRÁFICO EN BLANCO Y NEGRO */
 .noise-overlay {
     position: fixed;
-    top: -50%; left: -50%; width: 200%; height: 200%;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Se va detrás de tus textos y arsenal técnico */
     pointer-events: none;
-    z-index: 9999;
     
-    /* Con blanco y negro puedes subir la opacidad a 0.15 o 0.20 
-       para lograr ese look vintage marcado sin que se vea mal */
-    opacity: 0.15; 
+    /* Cargamos tu nueva imagen de fondo */
+    background-image: url('noise.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     
-    /* Cambia 'grano.jpg' por el nombre exacto de tu archivo nuevo */
-    background-image: url('ruido.jpg'); 
-    background-repeat: repeat;
-    
-    /* 'overlay' es magistral para imágenes en blanco y negro */
-    mix-blend-mode: overlay; 
-    
-    /* Activamos la animación para que el grano tenga vida */
-    animation: grainAnimate 0.5s steps(10) infinite;
-}
-/* Animación orgánica para el grano vintage */
-@keyframes grainAnimate {
-    0%, 100% { transform:translate(0, 0); }
-    10% { transform:translate(-1%, -1%); }
-    20% { transform:translate(-2%, 1%); }
-    30% { transform:translate(1%, -2%); }
-    40% { transform:translate(-1%, 3%); }
-    50% { transform:translate(-2%, -1%); }
-    60% { transform:translate(3%, 0); }
-    70% { transform:translate(0, 2%); }
-    80% { transform:translate(-3%, -3%); }
-    90% { transform:translate(2%, 1%); }
+    /* Como la imagen ya trae su propio grano tosco integrado, 
+       puedes dejar la opacidad al 100% (1) para que luzca con toda su fuerza */
+    opacity: 1; 
 }
         /* Atmósfera de Luces Trippy de Fondo */
         .glow-orange {
