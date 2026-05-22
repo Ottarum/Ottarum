@@ -37,21 +37,19 @@
             width: 100%;
             height: 100vh;
             pointer-events: none;
-            z-index: -2; /* Se queda completamente detrás de las luces y textos */
+            z-index: -3; /* Un paso más atrás para que no interfiera */
             
-            /* Cargamos tu imagen de fluido tosco */
             background-image: url('noise.png'); 
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
             opacity: 1;
             
-            /* Máscara que desvanece el fluido de forma orgánica antes de entrar al Arsenal */
             -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
         }
 
-        /* CAPA DE GRANO CINEMATOGRÁFICO REAL (SUPER SUTIL - AL FRENTE) */
+        /* CAPA DE GRANO CINEMATOGRÁFICO REAL */
         .noise-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -67,75 +65,106 @@
         .glow-orange {
             position: fixed; width: 600px; height: 600px;
             background: radial-gradient(circle, rgba(255, 95, 0, 0.12) 0%, transparent 70%);
-            top: -200px; left: -100px; z-index: -1; pointer-events: none; filter: blur(80px);
+            top: -200px; left: -100px; z-index: -2; pointer-events: none; filter: blur(80px);
         }
         .glow-cyan {
             position: fixed; width: 500px; height: 500px;
             background: radial-gradient(circle, rgba(0, 245, 255, 0.08) 0%, transparent 70%);
-            bottom: -100px; right: -100px; z-index: -1; pointer-events: none; filter: blur(80px);
+            bottom: -100px; right: -100px; z-index: -2; pointer-events: none; filter: blur(80px);
         }
 
-        /* Contenedores */
-        /* Contenedores */
-.container { 
-    max-width: 1300px; 
-    margin: 0 auto; 
-    padding: 0 60px; /* Aumentamos un poco el espaciado interno */
-    width: 100%; 
-    min-height: 100%;
-    
-    /* LA FRANJA VERTICAL OPACA */
-    background: rgba(3, 7, 8, 0.75); /* Negro a un 75% de opacidad */
-    backdrop-filter: blur(10px); /* Difumina ligeramente el fondo líquido por detrás */
-    -webkit-backdrop-filter: blur(10px);
-    
-    /* BORDES LATERALES DEL SKETCH */
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
-    
-    /* Sombra suave para despegar la franja del fondo */
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8); 
-}
-       section { 
-    min-height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    position: relative; 
-    width: 100%;
-}
+        /* FRANJA VERTICAL CENTRAL ÚNICA Y CONTINUA */
+        .central-strip {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1300px;
+            height: 100vh;
+            z-index: -1; /* Detrás del contenido, delante del fondo líquido */
+            pointer-events: none;
+            
+            /* Bordes laterales muy finos */
+            border-left: 1px solid rgba(255, 255, 255, 0.04);
+            border-right: 1px solid rgba(255, 255, 255, 0.04);
+            
+            /* GRADIENTE: Opaco (88%) en laterales, Translúcido (40%) en el centro */
+            background: linear-gradient(
+                to right, 
+                rgba(3, 7, 8, 0.88) 0%, 
+                rgba(3, 7, 8, 0.40) 25%, 
+                rgba(3, 7, 8, 0.40) 75%, 
+                rgba(3, 7, 8, 0.88) 100%
+            );
+            
+            /* Difuminado suave por detrás del gradiente */
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.7);
+        }
 
-        /* HERO SECTION */
-        #hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0; }
+        /* Contenedores (Estructura limpia sin fondos repetidos) */
+        .container { 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            padding: 0 50px; 
+            width: 100%; 
+            position: relative;
+            z-index: 2;
+        }
+
+        section { 
+            padding: 120px 0; 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            position: relative; 
+            width: 100%;
+        }
+
+        /* HERO SECTION (Centrado vertical perfecto) */
+        #hero { 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding: 0; 
+        }
+        
         .hero-title { 
-    font-family: 'Syne', sans-serif; 
-    /* clamp(MÍNIMO, VALOR_ESCALABLE, MÁXIMO) */
-    font-size: clamp(3.5rem, 7.5vw, 7.5rem); 
-    font-weight: 800; 
-    line-height: 0.9; 
-    text-transform: uppercase; 
-    letter-spacing: -3px; 
-    background: linear-gradient(180deg, #fff 40%, var(--text-muted)); 
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent; 
-    text-shadow: 0 4px 30px rgba(0,0,0,0.5); 
-    width: 100%;
-    word-break: break-word; /* Evita que rompa layouts en pantallas muy pequeñas */
-}
+            font-family: 'Syne', sans-serif; 
+            font-size: clamp(3.5rem, 7.5vw, 7.5rem); 
+            font-weight: 800; 
+            line-height: 0.9; 
+            text-transform: uppercase; 
+            letter-spacing: -3px; 
+            background: linear-gradient(180deg, #fff 40%, var(--text-muted)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-shadow: 0 4px 30px rgba(0,0,0,0.5); 
+            width: 100%;
+            word-break: break-word;
+        }
+        
         .hero-subtitle { font-size: 1.4rem; margin-top: 20px; color: var(--accent-orange); letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
 
         /* ARSENAL / SOFTWARE */
         h2.section-heading { font-family: 'Syne', sans-serif; font-size: 3rem; margin-bottom: 60px; text-transform: uppercase; border-left: 5px solid var(--accent-orange); padding-left: 20px; width: 100%; }
         
         .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; width: 100%; }
-.software-card { 
-    background: rgba(255, 255, 255, 0.02); /* Más sutil para que juegue con la franja */
-    backdrop-filter: blur(4px); 
-    border: 1px solid rgba(255,255,255,0.05); 
-    padding: 40px 20px; 
-    border-radius: 16px; 
-    text-align: center; 
-    transition: all 0.4s ease; 
-}        .software-card:hover { border-color: var(--accent-cyan); transform: translateY(-5px); background: rgba(0, 245, 255, 0.02); }
+        
+        .software-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(4px); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            padding: 40px 20px; 
+            border-radius: 16px; 
+            text-align: center; 
+            transition: all 0.4s ease; 
+        }
+        .software-card:hover { border-color: var(--accent-cyan); transform: translateY(-5px); background: rgba(0, 245, 255, 0.02); }
         .software-card i { font-size: 3.5rem; color: #fff; margin-bottom: 15px; display: block; }
         .software-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 5px; }
         .software-card p { color: var(--text-muted); font-size: 0.9rem; }
@@ -164,7 +193,7 @@
         .btn-download:hover { background: #fff; color: var(--bg-dark); }
 
         /* SOCIAL FOOTER */
-        footer { padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; width: 100%; position: relative; z-index: 10; }
+        footer { padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; width: 100%; position: relative; z-index: 10; }
         .social-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; }
         .social-links a { color: #fff; font-size: 2rem; transition: color 0.3s; text-decoration: none; }
         .social-links a:hover { color: var(--accent-orange); }
@@ -177,6 +206,8 @@
     <div class="noise-overlay"></div>
     <div class="glow-orange"></div>
     <div class="glow-cyan"></div>
+    
+    <div class="central-strip"></div>
 
     <section id="hero">
         <div class="container">
@@ -282,7 +313,7 @@
     </section>
 
     <footer>
-        <div class="container" style="padding-top: 60px; padding-bottom: 60px; background: rgba(3, 7, 8, 0.85);">
+        <div class="container">
             <div class="social-links">
                 <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
