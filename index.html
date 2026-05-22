@@ -76,8 +76,33 @@
         }
 
         /* Contenedores */
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 40px; width: 100%; }
-        section { padding: 120px 0; min-height: 100vh; display: flex; align-items: center; position: relative; }
+        /* Contenedores */
+.container { 
+    max-width: 1300px; 
+    margin: 0 auto; 
+    padding: 0 60px; /* Aumentamos un poco el espaciado interno */
+    width: 100%; 
+    min-height: 100%;
+    
+    /* LA FRANJA VERTICAL OPACA */
+    background: rgba(3, 7, 8, 0.75); /* Negro a un 75% de opacidad */
+    backdrop-filter: blur(10px); /* Difumina ligeramente el fondo líquido por detrás */
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* BORDES LATERALES DEL SKETCH */
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* Sombra suave para despegar la franja del fondo */
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8); 
+}
+       section { 
+    min-height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    position: relative; 
+    width: 100%;
+}
 
         /* HERO SECTION */
         #hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0; }
@@ -102,8 +127,15 @@
         h2.section-heading { font-family: 'Syne', sans-serif; font-size: 3rem; margin-bottom: 60px; text-transform: uppercase; border-left: 5px solid var(--accent-orange); padding-left: 20px; width: 100%; }
         
         .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; width: 100%; }
-        .software-card { background: rgba(3, 7, 8, 0.6); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.05); padding: 40px 20px; border-radius: 16px; text-align: center; transition: all 0.4s ease; }
-        .software-card:hover { border-color: var(--accent-cyan); transform: translateY(-5px); background: rgba(0, 245, 255, 0.02); }
+.software-card { 
+    background: rgba(255, 255, 255, 0.02); /* Más sutil para que juegue con la franja */
+    backdrop-filter: blur(4px); 
+    border: 1px solid rgba(255,255,255,0.05); 
+    padding: 40px 20px; 
+    border-radius: 16px; 
+    text-align: center; 
+    transition: all 0.4s ease; 
+}        .software-card:hover { border-color: var(--accent-cyan); transform: translateY(-5px); background: rgba(0, 245, 255, 0.02); }
         .software-card i { font-size: 3.5rem; color: #fff; margin-bottom: 15px; display: block; }
         .software-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 5px; }
         .software-card p { color: var(--text-muted); font-size: 0.9rem; }
@@ -250,7 +282,7 @@
     </section>
 
     <footer>
-        <div class="container">
+        <div class="container" style="padding-top: 60px; padding-bottom: 60px; background: rgba(3, 7, 8, 0.85);">
             <div class="social-links">
                 <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
