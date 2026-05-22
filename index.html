@@ -27,17 +27,26 @@
             overflow-x: hidden;
         }
 
-/* CAPA DE GRANO CINEMATOGRÁFICO REAL (SUPER SUTIL) */
+/* CAPA DE GRANO CINEMATOGRÁFICO EN BLANCO Y NEGRO */
 .noise-overlay {
     position: fixed;
-    top: -50%; left: -50%; width: 200%; height: 200%; /* Rompe los bordes para poder moverla */
+    top: -50%; left: -50%; width: 200%; height: 200%;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.12; /* Ajusta este valor si lo quieres más sutil (0.06) o más marcado (0.15) */
-    background-image: url('ruido'); /* Tu archivo local perfecto */
-    background-repeat: repeat; /* Clave: hace que la textura cubra todo en mosaico */
-    mix-blend-mode: screen; /* Cambiado a screen para que resalte sobre el negro absoluto */
-    animation: grainAnimate 0.5s steps(10) infinite; /* El motor que le da vida */
+    
+    /* Con blanco y negro puedes subir la opacidad a 0.15 o 0.20 
+       para lograr ese look vintage marcado sin que se vea mal */
+    opacity: 0.15; 
+    
+    /* Cambia 'grano.jpg' por el nombre exacto de tu archivo nuevo */
+    background-image: url('ruido.jpg'); 
+    background-repeat: repeat;
+    
+    /* 'overlay' es magistral para imágenes en blanco y negro */
+    mix-blend-mode: overlay; 
+    
+    /* Activamos la animación para que el grano tenga vida */
+    animation: grainAnimate 0.5s steps(10) infinite;
 }
 /* Animación orgánica para el grano vintage */
 @keyframes grainAnimate {
