@@ -1,50 +1,150 @@
-/* ==========================================================================
-   CONFIGURACIÓN DEL BODY (Soporte para el fondo deslizable)
-   ========================================================================== */
-body {
-    background-color: var(--bg-dark);
-    color: #ffffff;
-    font-family: 'Space Grotesk', sans-serif;
-    overflow-x: hidden;
-    /* CRUCIAL: Hace que el body sea el punto de referencia absoluto.
-       Esto permite que la textura mida el 100% de la altura de toda tu web 
-       y no se corte con parches negros al bajar al Arsenal Técnico.
-    */
-    position: relative; 
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ottarum // 3D Digital Artist</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
 
-/* ==========================================================================
-   CAPA DE FONDO LÍQUIDO (Efecto de Desplazamiento Real)
-   ========================================================================== */
-.noise-overlay {
-    /* Cambiamos a 'absolute' para que se estire a lo largo de todo el documento 
-       y ruede hacia arriba de manera natural junto con tus textos.
-    */
-    position: absolute; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Cubre el 100% del largo total de la página */
-    pointer-events: none; /* Permite hacer clic en tus botones y enlaces sin estorbar */
-    z-index: -1; /* Se posiciona detrás de tu tipografía cromada */
-    
-    /* Ruta de tu asset texturizado */
-    background-image: url('noise.png'); 
-    
-    /* '100% auto' evita el zoom exagerado del 'cover'. 
-       Fuerza a que la imagen mantenga su proporción original a lo ancho 
-       y adapte su altura de forma orgánica.
-    */
-    background-size: 100% auto; 
-    background-position: top center;
-    
-    /* Si tu portafolio llega a ser más largo que la altura de la imagen, 
-       'repeat-y' duplicará la textura fluidamente hacia abajo para que nunca se acabe.
-    */
-    background-repeat: repeat-y; 
-    
-    /* Mantenemos la opacidad al máximo (1) para conservar toda la fuerza del color 
-       naranja y cian que renderizamos previamente.
-    */
-    opacity: 1; 
-}
+    <style>
+        /* Variables globales de tu proyecto */
+        :root {
+            --bg-dark: #030708;
+            --text-light: #ffffff;
+            --accent-orange: #ff4500;
+        }
+
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ==========================================================================
+           CONFIGURACIÓN DEL BODY (Soporte para el fondo deslizable)
+           ========================================================================== */
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            /* CRUCIAL: Hace que el body sea la referencia absoluta de altura.
+               Permite que el fondo líquido mida el 100% de la página entera 
+               y no se corte dejando parches negros al bajar. */
+            position: relative; 
+        }
+
+        /* ==========================================================================
+           CAPA DE FONDO LÍQUIDO (Efecto de Desplazamiento Real)
+           ========================================================================== */
+        .noise-overlay {
+            /* Se vuelve 'absolute' para estirarse a lo largo de todo el portafolio 
+               y rodar hacia arriba de manera natural junto con tus textos. */
+            position: absolute; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Cubre el largo total de todos tus bloques sumados */
+            pointer-events: none; /* No estorba clicks en botones ni enlaces */
+            z-index: -1; /* Se mantiene oculto detrás de tu tipografía */
+            
+            /* Tu asset de imagen líquida */
+            background-image: url('noise.png'); 
+            
+            /* '100% auto' evita el zoom exagerado del cover viejo.
+               Fuerza a que la imagen mantenga su proporción a lo ancho 
+               y adapte su altura de forma orgánica. */
+            background-size: 100% auto; 
+            background-position: top center;
+            
+            /* Si tu portafolio llega a ser más largo que el alto de la imagen,
+               duplica la textura fluidamente hacia abajo para que nunca se acabe. */
+            background-repeat: repeat-y; 
+            opacity: 1; 
+        }
+
+        /* ==========================================================================
+           ESTILOS DE LAS SECCIONES (Tu Estructura Visual)
+           ========================================================================== */
+        
+        /* Contenedor Hero principal */
+        #hero {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Tu imponente título cromado */
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            /* Sutil sombra para despegar el cromo de las ondas naranjas del fondo */
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7); 
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.5rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-orange);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            max-width: 600px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* Sección del Arsenal Técnico */
+        .section-arsenal {
+            width: 100%;
+            padding: 100px 10% 140px 10%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: -1px;
+            border-left: 6px solid var(--accent-orange);
+            padding-left: 20px;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="noise-overlay"></div>
+
+    <section id="hero">
+        <h1 class="hero-title">Ottarum</h1>
+        <p class="hero-subtitle">3D Artist & Digital Alchemist</p>
+        <p class="hero-description">
+            +5 años de experiencia esculpiendo realidades e interrupciones visuales de alta fidelidad.
+        </p>
+    </section>
+
+    <section class="section-arsenal">
+        <h2 class="section-title">El Arsenal Técnico</h2>
+        </section>
+
+</body>
+</html>
