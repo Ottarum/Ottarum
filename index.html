@@ -27,16 +27,17 @@
             overflow-x: hidden;
         }
 
-        /* CAPA DE GRANO CINEMATOGRÁFICO REAL (SUPER SUTIL) */
-        .noise-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.04; /* Nivel muy bajo para que sea elegante y no manche */
-            background-image: url('https://raw.githubusercontent.com/AnisMontacer/Film-Grain-Overlay/master/Film-Grain-Overlay.jpg'); 
-            background-size: cover;
-            mix-blend-mode: overlay; /* Se funde orgánicamente con tus renders */
+      /* CAPA DE GRANO CINEMATOGRÁFICO REAL (SUPER SUTIL) */
+.noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.08; /* Subí esto a 0.08 para que alcances a notar el cambio de tu imagen */
+    background-image: url('grano_pelicula_ottarum.png'); /* <--- AQUÍ CAMBIAS SOLO ESTO (Pon el nombre exacto de tu archivo) */
+    background-size: cover;
+    mix-blend-mode: overlay; 
+}
         }
 
         /* Atmósfera de Luces Trippy de Fondo */
