@@ -28,22 +28,23 @@
         }
 
 .noise-overlay {
-    position: absolute; /* CAMBIADO: Permite que el contenedor responda a la altura de la página */
+    position: fixed; /* 1. Volvemos a fixed para que el contenedor te acompañe en toda la pantalla */
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;       /* CAMBIADO: Se estira a lo largo de todo tu portafolio */
+    height: 100vh;   /* 2. Forzamos a que mida el alto total de la ventana del navegador */
     pointer-events: none;
     z-index: -1; 
     
-    /* Tu imagen cargada */
-    background-image: url('noise.png'); /* Asegúrate de que este nombre coincida con tu archivo */
+    /* Tus assets de imagen */
+    background-image: url('noise.png'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     
-    /* EFECTO PARALLAX REAL */
-    background-attachment: fixed; /* Mantiene el fluido estático en la ventana mientras los textos suben */
+    /* EL TRUCO PARA EL DESPLAZAMIENTO REAL: */
+    /* Quitamos 'background-attachment: fixed' y dejamos que el navegador maneje el scroll natural de la imagen */
+    background-attachment: scroll; 
     opacity: 1; 
 }
 
