@@ -81,7 +81,21 @@
 
         /* HERO SECTION */
         #hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0; }
-        .hero-title { font-family: 'Syne', sans-serif; font-size: 8vw; font-weight: 800; line-height: 0.9; text-transform: uppercase; letter-spacing: -3px; background: linear-gradient(180deg, #fff 40%, var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+        .hero-title { 
+    font-family: 'Syne', sans-serif; 
+    /* clamp(MÍNIMO, VALOR_ESCALABLE, MÁXIMO) */
+    font-size: clamp(3.5rem, 7.5vw, 7.5rem); 
+    font-weight: 800; 
+    line-height: 0.9; 
+    text-transform: uppercase; 
+    letter-spacing: -3px; 
+    background: linear-gradient(180deg, #fff 40%, var(--text-muted)); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5); 
+    width: 100%;
+    word-break: break-word; /* Evita que rompa layouts en pantallas muy pequeñas */
+}
         .hero-subtitle { font-size: 1.4rem; margin-top: 20px; color: var(--accent-orange); letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
 
         /* ARSENAL / SOFTWARE */
