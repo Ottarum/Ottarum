@@ -27,18 +27,18 @@
             overflow-x: hidden;
         }
 
-      /* CAPA DE GRANO CINEMATOGRÁFICO REAL (SUPER SUTIL) */
+/* CAPA DE GRANO CINEMATOGRÁFICO REAL (SUPER SUTIL) */
 .noise-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: -50%; left: -50%; width: 200%; height: 200%; /* Rompe los bordes para poder moverla */
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.08; /* Subí esto a 0.08 para que alcances a notar el cambio de tu imagen */
-    background-image: url('grano_pelicula_ottarum.png.png'); /* <--- AQUÍ CAMBIAS SOLO ESTO (Pon el nombre exacto de tu archivo) */
-    background-size: cover;
-    mix-blend-mode: overlay; 
+    opacity: 0.12; /* Ajusta este valor si lo quieres más sutil (0.06) o más marcado (0.15) */
+    background-image: url('grano_pelicula_ottarum.png.png'); /* Tu archivo local perfecto */
+    background-repeat: repeat; /* Clave: hace que la textura cubra todo en mosaico */
+    mix-blend-mode: screen; /* Cambiado a screen para que resalte sobre el negro absoluto */
+    animation: grainAnimate 0.5s steps(10) infinite; /* El motor que le da vida */
 }
-        }
 
         /* Atmósfera de Luces Trippy de Fondo */
         .glow-orange {
