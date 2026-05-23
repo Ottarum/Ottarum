@@ -28,25 +28,37 @@
         }
 
         /* ==========================================================================
-           FONDO LÍQUIDO CON MÁSCARA GRADUAL (Hero Background)
+           FONDO LÍQUIDO CON EFECTO PARALLAX (DESFASE DE VELOCIDAD SUAVE)
            ========================================================================== */
         .liquid-bg-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
+            height: 140vh; /* Es más alto que la pantalla para tener margen de movimiento */
             pointer-events: none;
-            z-index: -3; /* Un paso más atrás para que no interfiera */
+            z-index: -3;
             
+            /* Cargamos tu nueva imagen vertical alargada */
             background-image: url('figuenoise.jpg'); 
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
             opacity: 1;
             
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+            /* Animación vinculada al movimiento del Scroll */
+            animation: parallaxScroll linear both;
+            animation-timeline: scroll(root);
+            animation-range: start end;
+
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0.1) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0.1) 100%);
+        }
+
+        /* Define cuánto se va a desplazar el fondo (un desfase lento y elegante) */
+        @keyframes parallaxScroll {
+            from { transform: translateY(0); }
+            to { transform: translateY(-25vh); } /* Se mueve mucho más lento que el scroll real */
         }
 
         /* CAPA DE GRANO CINEMATOGRÁFICO REAL */
@@ -82,14 +94,12 @@
             width: 100%;
             max-width: 1300px;
             height: 100vh;
-            z-index: -1; /* Detrás del contenido, delante del fondo líquido */
+            z-index: -1;
             pointer-events: none;
             
-            /* Bordes laterales muy finos */
             border-left: 1px solid rgba(255, 255, 255, 0.04);
             border-right: 1px solid rgba(255, 255, 255, 0.04);
             
-            /* GRADIENTE: Opaco (88%) en laterales, Translúcido (40%) en el centro */
             background: linear-gradient(
                 to right, 
                 rgba(3, 7, 8, 0.88) 0%, 
@@ -98,13 +108,12 @@
                 rgba(3, 7, 8, 0.88) 100%
             );
             
-            /* Difuminado suave por detrás del gradiente */
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             box-shadow: 0 0 60px rgba(0, 0, 0, 0.7);
         }
 
-        /* Contenedores (Estructura limpia sin fondos repetidos) */
+        /* Contenedores */
         .container { 
             max-width: 1300px; 
             margin: 0 auto; 
@@ -115,7 +124,7 @@
         }
 
         section { 
-            padding: 120px 0; 
+            padding: 140px 0; 
             min-height: 100vh; 
             display: flex; 
             align-items: center; 
@@ -123,7 +132,7 @@
             width: 100%;
         }
 
-        /* HERO SECTION (Centrado vertical perfecto) */
+        /* HERO SECTION */
         #hero { 
             height: 100vh; 
             display: flex; 
