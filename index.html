@@ -153,22 +153,23 @@
             width: 100%;
             word-break: break-word;
 
-            /* NUEVO: Acabado reflectivo translúcido/metalizado basado en tu muestra */
+            /* REDISEÑO: Efecto de cromo líquido translúcido con reflejo curvo sutil */
             background: linear-gradient(
-                180deg, 
-                #ffffff 0%, 
-                #e2e8f0 25%, 
-                #8a99ad 48%, 
-                #ffffff 52%, 
-                #cbd5e1 75%, 
-                #708090 100%
-            ); 
+                175deg,
+                #ffffff 0%,
+                #f1f5f9 43%,
+                #94a3b8 47%,
+                #334155 50%,
+                #cbd5e1 53%,
+                #ffffff 58%,
+                #64748b 100%
+            );
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             
-            /* Sombra pulida que simula volumen físico y refracción */
-            filter: drop-shadow(0 2px 1px rgba(255, 255, 255, 0.3)) 
-                    drop-shadow(0 15px 25px rgba(0, 0, 0, 0.7));
+            /* Sombra y relieve de alta definición para simular biselado de vidrio */
+            filter: drop-shadow(0 2px 0px rgba(255, 255, 255, 0.4))
+                    drop-shadow(0 12px 20px rgba(0, 0, 0, 0.8));
         }
         
         .hero-subtitle { font-size: 1.2rem; margin-top: 25px; color: var(--accent-orange); letter-spacing: 5px; text-transform: uppercase; font-weight: 700; }
@@ -302,93 +303,4 @@
                 <div class="software-card">
                     <i class="fa-solid fa-bezier-curve"></i>
                     <h3>Photoshop</h3>
-                    <p>Postprocesado & Matte Painting</p>
-                </div>
-                <div class="software-card">
-                    <i class="fa-solid fa-film"></i>
-                    <h3>After Effects</h3>
-                    <p>Composición & VFX Cinéticos</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery">
-        <div class="container">
-            <h2 class="section-heading">Proyectos Seleccionados</h2>
-            
-            <div class="project-row">
-                <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Render 1">
-                </div>
-                <div class="tech-data">
-                    <h3>Abstracción Orgánica 01</h3>
-                    <p>Exploración de dinámicas de fluidos congelados en alta densidad poligonal.</p>
-                    <ul>
-                        <li><strong>SOFTWARE:</strong> Blender / Substance Painter</li>
-                        <li><strong>RENDERING:</strong> Cycles (1000 samples)</li>
-                        <li><strong>WORK TIME:</strong> 24 Horas de Cómputo</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-row">
-                <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Render 2">
-                </div>
-                <div class="tech-data">
-                    <h3>Arquitectura Distópica</h3>
-                    <p>Modelado procedural enfocado en entornos modulares de ciencia ficción.</p>
-                    <ul>
-                        <li><strong>SOFTWARE:</strong> Blender / After Effects</li>
-                        <li><strong>TECH:</strong> Geometry Nodes</li>
-                        <li><strong>FORMAT:</strong> 4K UHD Ultra-wide</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="downloads">
-        <div class="container">
-            <h2 class="section-heading">Free Wallpapers // HQ</h2>
-            <p style="color: var(--text-muted); margin-top: -40px; margin-bottom: 50px; font-size: 1.2rem;">Descarga mis piezas optimizadas para pantallas móviles y de escritorio sin costo.</p>
-            
-            <div class="wallpaper-grid">
-                <div class="wallpaper-card">
-                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 1">
-                    <div class="download-overlay">
-                        <div>
-                            <h4 style="font-weight: 700;">Neon Shift</h4>
-                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
-                        </div>
-                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
-                    </div>
-                </div>
-                
-                <div class="wallpaper-card">
-                    <img src="https://images.unsplash.com/photo-1618005198143-e5283b519a7f?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 2">
-                    <div class="download-overlay">
-                        <div>
-                            <h4 style="font-weight: 700;">Chrome Flow</h4>
-                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
-                        </div>
-                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-            <p>&copy; 2026 OTTARUM. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+                    <p>Postprocesado & Matte
