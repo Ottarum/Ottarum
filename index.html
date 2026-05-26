@@ -28,7 +28,7 @@
         }
 
         /* ==========================================================================
-           FONDO LÍQUIDO CON EFECTO PARALLAX
+           CAPA 1: FONDO LÍQUIDO CON EFECTO PARALLAX (BASE)
            ========================================================================== */
         .liquid-bg-overlay {
             position: fixed;
@@ -37,7 +37,7 @@
             width: 100%;
             height: 140vh;
             pointer-events: none;
-            z-index: -3;
+            z-index: -4; /* Al fondo del todo */
             background-image: url('figuenoise.jpg'); 
             background-size: cover;
             background-position: center top;
@@ -53,7 +53,7 @@
             to { transform: translateY(-25vh); }
         }
 
-        /* CAPA DE GRANO CINEMATOGRÁFICO REAL */
+        /* CAPA DE GRANO CINEMATOGRÁFICO */
         .noise-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -69,27 +69,17 @@
         .glow-orange {
             position: fixed; width: 600px; height: 600px;
             background: radial-gradient(circle, rgba(255, 95, 0, 0.12) 0%, transparent 70%);
-            top: -200px; left: -100px; z-index: -2; pointer-events: none; filter: blur(80px);
+            top: -200px; left: -100px; z-index: -3; pointer-events: none; filter: blur(80px);
         }
         .glow-cyan {
             position: fixed; width: 500px; height: 500px;
             background: radial-gradient(circle, rgba(0, 245, 255, 0.08) 0%, transparent 70%);
-            bottom: -100px; right: -100px; z-index: -2; pointer-events: none; filter: blur(80px);
+            bottom: -100px; right: -100px; z-index: -3; pointer-events: none; filter: blur(80px);
         }
 
-        /* SOMBREADO NEGRO INFERIOR */
-        .bottom-shadow {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40vh;
-            background: linear-gradient(to bottom, rgba(3, 7, 8, 0) 0%, var(--bg-dark) 100%);
-            pointer-events: none;
-            z-index: -2;
-        }
-
-        /* FRANJA VERTICAL CENTRAL CRISTALIZADA Y CORREGIDA */
+        /* ==========================================================================
+           CAPA 2: FRANJA VERTICAL CENTRAL OSCURA (TÚNEL DE PROFUNDIDAD)
+           ========================================================================== */
         .central-strip {
             position: fixed;
             top: 0;
@@ -98,34 +88,47 @@
             width: 100%;
             max-width: 1300px;
             height: 100vh;
-            z-index: -1;
+            z-index: -2; /* Por encima del fondo líquido, por debajo del contenido */
             pointer-events: none;
-            border-left: 1px solid rgba(255, 255, 255, 0.03);
-            border-right: 1px solid rgba(255, 255, 255, 0.03);
+            border-left: 1px solid rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
             
-            /* Ajustado el degradado para que no tape por completo tu fondo líquido */
+            /* Degradado lateral oscuro que respeta el centro para no tapar el fluido */
             background: linear-gradient(
                 to right, 
-                rgba(3, 7, 8, 0.6) 0%, 
-                rgba(3, 7, 8, 0.1) 25%, 
-                rgba(3, 7, 8, 0.1) 75%, 
-                rgba(3, 7, 8, 0.6) 100-percent
+                rgba(3, 7, 8, 0.75) 0%, 
+                rgba(3, 7, 8, 0.25) 25%, 
+                rgba(3, 7, 8, 0.25) 75%, 
+                rgba(3, 7, 8, 0.75) 100%
             );
             
-            /* Un blur sutil para unificar, pero que permite ver los colores detrás */
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.8);
         }
 
-        /* Contenedores */
+        /* ==========================================================================
+           CAPA 4: ZONA INFERIOR NEGRA GRADUAL (SOBRE EL FONDO)
+           ========================================================================== */
+        .bottom-shadow {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+            background: linear-gradient(to bottom, rgba(3, 7, 8, 0) 0%, var(--bg-dark) 95%);
+            pointer-events: none;
+            z-index: -1; /* Cubre los fondos y la franja para desvanecer a negro antes del contenido */
+        }
+
+        /* Contenedores generales de contenido */
         .container { 
             max-width: 1300px; 
             margin: 0 auto; 
             padding: 0 50px; 
             width: 100%; 
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Contenido siempre arriba de los efectos de fondo */
         }
 
         section { 
@@ -164,204 +167,20 @@
         
         .hero-subtitle { font-size: 1.4rem; margin-top: 20px; color: var(--accent-orange); letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
 
-        /* ARSENAL / SOFTWARE (ESTILO GLASSMORPHISM PULIDO) */
+        /* ==========================================================================
+           CAPA 3: CAJONES DE CRISTAL PURO ESTILO APPLE (TRANSLÚCIDO + DISTORSIÓN)
+           ========================================================================== */
         h2.section-heading { font-family: 'Syne', sans-serif; font-size: 3rem; margin-bottom: 60px; text-transform: uppercase; border-left: 5px solid var(--accent-orange); padding-left: 20px; width: 100%; }
         
         .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; width: 100%; }
         
         .software-card { 
-            /* Fondo de cristal oscuro súper pulido y translúcido */
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            /* Fondo completamente cristalino y limpio de color, usa negro sutil para no lavar el fondo */
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.02) 100%);
             
-            /* Borde milimétrico y limpio */
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            /* Distorsión del fondo líquido */
+            backdrop-filter: blur(16px) saturate(120%);
+            -webkit-backdrop-filter: blur(16px) saturate(120%);
             
-            padding: 40px 20px; 
-            border-radius: 16px; 
-            text-align: center; 
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                        background-color 0.4s ease, 
-                        border-color 0.4s ease, 
-                        box-shadow 0.4s ease;
-        }
-        
-        .software-card:hover { 
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(255, 255, 255, 0.2); 
-            transform: translateY(-6px); 
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-        }
-        
-        /* Destaque sutil y minimalista para el primer elemento (Blender) */
-        .software-card:first-child {
-            border-color: rgba(0, 245, 255, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 245, 255, 0.02);
-        }
-        .software-card:first-child:hover {
-            border-color: rgba(0, 245, 255, 0.4);
-        }
-
-        .software-card i { font-size: 3.5rem; color: #fff; margin-bottom: 15px; display: block; transition: transform 0.4s ease; }
-        .software-card:hover i { transform: scale(1.05); }
-        .software-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 5px; }
-        .software-card p { color: var(--text-muted); font-size: 0.9rem; }
-
-        /* GALERÍA INTERACTIVA */
-        .project-row { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; margin-bottom: 120px; align-items: center; width: 100%; }
-        
-        .media-box { background: #0b1112; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 16/9; }
-        .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        
-        .tech-data { padding: 30px; font-family: monospace; font-size: 0.95rem; color: var(--accent-cyan); background: rgba(0,0,0,0.4); border-radius: 12px; border-left: 3px solid var(--accent-cyan); }
-        .tech-data h3 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: #fff; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
-        .tech-data p { color: #fff; margin-bottom: 15px; font-family: 'Space Grotesk', sans-serif; }
-        .tech-data ul { list-style: none; }
-        .tech-data li { margin-bottom: 8px; color: var(--text-muted); }
-        .tech-data li strong { color: #fff; }
-
-        /* WALLPAPERS / DOWNLOADS */
-        .wallpaper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; width: 100%; }
-        .wallpaper-card { border-radius: 16px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.1); aspect-ratio: 9/16; }
-        .wallpaper-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .wallpaper-card:hover img { transform: scale(1.05); }
-        
-        .download-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); display: flex; justify-content: space-between; align-items: center; }
-        .btn-download { background: var(--accent-orange); color: #fff; border: none; padding: 12px 20px; border-radius: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-decoration: none; cursor: pointer; transition: background 0.3s; font-size: 0.9rem; text-transform: uppercase;}
-        .btn-download:hover { background: #fff; color: var(--bg-dark); }
-
-        /* SOCIAL FOOTER */
-        footer { padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; width: 100%; position: relative; z-index: 10; }
-        .social-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; }
-        .social-links a { color: #fff; font-size: 2rem; transition: color 0.3s; text-decoration: none; }
-        .social-links a:hover { color: var(--accent-orange); }
-        footer p { color: var(--text-muted); font-size: 0.9rem; }
-    </style>
-</head>
-<body>
-
-    <div class="liquid-bg-overlay"></div>
-    <div class="noise-overlay"></div>
-    <div class="glow-orange"></div>
-    <div class="glow-cyan"></div>
-    <div class="bottom-shadow"></div>
-    
-    <div class="central-strip"></div>
-
-    <section id="hero">
-        <div class="container">
-            <h1 class="hero-title">OTTARUM</h1>
-            <p class="hero-subtitle">3D Artist & Digital Alchemist</p>
-            <p style="color: var(--text-muted); max-width: 500px; margin: 25px auto 0 auto; font-size: 1.1rem;">+5 años de experiencia esculpiendo realidades e interrupciones visuales de alta fidelidad.</p>
-        </div>
-    </section>
-
-    <section id="arsenal">
-        <div class="container">
-            <h2 class="section-heading">El Arsenal Técnico</h2>
-            <div class="software-grid">
-                <div class="software-card">
-                    <i class="fa-solid fa-cube"></i>
-                    <h3>Blender</h3>
-                    <p>Core 3D & Cycles/Eevee</p>
-                </div>
-                <div class="software-card">
-                    <i class="fa-solid fa-brush"></i>
-                    <h3>Substance</h3>
-                    <p>Texturizado PBR Avanzado</p>
-                </div>
-                <div class="software-card">
-                    <i class="fa-solid fa-bezier-curve"></i>
-                    <h3>Photoshop</h3>
-                    <p>Postprocesado & Matte Painting</p>
-                </div>
-                <div class="software-card">
-                    <i class="fa-solid fa-film"></i>
-                    <h3>After Effects</h3>
-                    <p>Composición & VFX Cinéticos</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery">
-        <div class="container">
-            <h2 class="section-heading">Proyectos Seleccionados</h2>
-            
-            <div class="project-row">
-                <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Render 1">
-                </div>
-                <div class="tech-data">
-                    <h3>Abstracción Orgánica 01</h3>
-                    <p>Exploración de dinámicas de fluidos congelados en alta densidad poligonal.</p>
-                    <ul>
-                        <li>return <strong>SOFTWARE:</strong> Blender / Substance Painter</li>
-                        <li><strong>RENDERING:</strong> Cycles (1000 samples)</li>
-                        <li><strong>WORK TIME:</strong> 24 Horas de Cómputo</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-row">
-                <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Render 2">
-                </div>
-                <div class="tech-data">
-                    <h3>Arquitectura Distópica</h3>
-                    <p>Modelado procedural enfocado en entornos modulares de ciencia ficción.</p>
-                    <ul>
-                        <li><strong>SOFTWARE:</strong> Blender / After Effects</li>
-                        <li><strong>TECH:</strong> Geometry Nodes</li>
-                        <li><strong>FORMAT:</strong> 4K UHD Ultra-wide</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="downloads">
-        <div class="container">
-            <h2 class="section-heading">Free Wallpapers // HQ</h2>
-            <p style="color: var(--text-muted); margin-top: -40px; margin-bottom: 50px; font-size: 1.2rem;">Descarga mis piezas optimizadas para pantallas móviles y de escritorio sin costo.</p>
-            
-            <div class="wallpaper-grid">
-                <div class="wallpaper-card">
-                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 1">
-                    <div class="download-overlay">
-                        <div>
-                            <h4 style="font-weight: 700;">Neon Shift</h4>
-                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
-                        </div>
-                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
-                    </div>
-                </div>
-                
-                <div class="wallpaper-card">
-                    <img src="https://images.unsplash.com/photo-1618005198143-e5283b519a7f?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 2">
-                    <div class="download-overlay">
-                        <div>
-                            <h4 style="font-weight: 700;">Chrome Flow</h4>
-                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
-                        </div>
-                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-            <p>&copy; 2026 OTTARUM. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+            /* Bordes ultra-finos y nítidos (estilo fineline Apple) */
+            border: 1px solid rgba
