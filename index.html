@@ -101,4 +101,329 @@
             z-index: -1;
             pointer-events: none;
             border-left: 1px solid rgba(255, 255, 255, 0.02);
-            border-right: 1px
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            background: linear-gradient(
+                to right, 
+                rgba(3, 7, 8, 0.5) 0%, 
+                rgba(3, 7, 8, 0.05) 20%, 
+                rgba(3, 7, 8, 0.05) 80%, 
+                rgba(3, 7, 8, 0.5) 100%
+            );
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Contenedores */
+        .container { 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            padding: 0 60px; 
+            width: 100%; 
+            position: relative;
+            z-index: 2;
+        }
+
+        section { 
+            padding: 120px 0; 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            position: relative; 
+            width: 100%;
+        }
+
+        /* HERO SECTION */
+        #hero { 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding: 0; 
+        }
+        
+        .hero-title-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .hero-title { 
+            font-family: 'Syne', sans-serif; 
+            font-size: clamp(3.5rem, 8vw, 7.8rem); 
+            font-weight: 800; 
+            line-height: 0.85; 
+            text-transform: uppercase; 
+            letter-spacing: -3px; 
+            width: 100%;
+            word-break: break-word;
+
+            /* NUEVO ENFOQUE: Cromo/Cristal refractivo usando fusión de capas */
+            background: linear-gradient(
+                173deg,
+                #ffffff 0%,
+                #e2e8f0 42%,
+                #475569 46%,
+                #0f172a 49%,
+                #cbd5e1 52%,
+                #ffffff 58%,
+                #1e293b 100%
+            );
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            
+            /* El secreto de la transparencia: Fusiona los grises y blancos con el fondo de atrás */
+            mix-blend-mode: overlay;
+            
+            /* Sutil relieve simulado de refracción interna */
+            filter: drop-shadow(0 2px 1px rgba(255, 255, 255, 0.7));
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Capa secundaria idéntica duplicada para simular el "grosor" y la sombra ambiental del cristal */
+        .hero-title-shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-family: 'Syne', sans-serif; 
+            font-size: clamp(3.5rem, 8vw, 7.8rem); 
+            font-weight: 800; 
+            line-height: 0.85; 
+            text-transform: uppercase; 
+            letter-spacing: -3px; 
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.95)) 
+                    blur(1px);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .hero-subtitle { font-size: 1.2rem; margin-top: 25px; color: var(--accent-orange); letter-spacing: 5px; text-transform: uppercase; font-weight: 700; }
+
+        /* ==========================================================================
+           ARSENAL / SOFTWARE (ESTILO GLASSMORPHISM AVANZADO - APPLE STYLE)
+           ========================================================================== */
+        h2.section-heading { font-family: 'Syne', sans-serif; font-size: 2.8rem; margin-bottom: 60px; text-transform: uppercase; border-left: 4px solid var(--accent-orange); padding-left: 20px; width: 100%; }
+        
+        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; width: 100%; }
+        
+        .software-card { 
+            background: rgba(10, 15, 18, 0.25);
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
+            border: 1.5px solid rgba(255, 255, 255, 0.09);
+            box-shadow: 
+                inset 0px 1.5px 0px 0px rgba(255, 255, 255, 0.18),
+                0 12px 30px -5px rgba(0, 0, 0, 0.5),
+                0 4px 10px -2px rgba(0, 0, 0, 0.3);
+            padding: 50px 25px; 
+            border-radius: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.5s ease, 
+                        box-shadow 0.5s ease,
+                        background 0.5s ease;
+        }
+        
+        .software-card:hover { 
+            transform: translateY(-6px);
+            background: rgba(0, 245, 255, 0.02);
+            border-color: rgba(0, 245, 255, 0.6); 
+            box-shadow: 
+                inset 0px 1.5px 0px 0px rgba(255, 255, 255, 0.35),
+                0 22px 40px -10px rgba(0, 0, 0, 0.7),
+                0 0 25px rgba(0, 245, 255, 0.15);
+        }
+
+        .software-card i { font-size: 3.2rem; color: #fff; margin-bottom: 20px; display: block; transition: transform 0.4s ease; }
+        .software-card:hover i { transform: scale(1.05) translateY(-2px); }
+        .software-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .software-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.4; }
+
+        /* GALERÍA / TRABAJOS */
+        .project-row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; margin-bottom: 100px; align-items: center; width: 100%; }
+        .media-box { background: #0b1112; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); aspect-ratio: 16/9; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        .tech-data { padding: 35px; background: rgba(5, 9, 10, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid rgba(255,255,255,0.04); border-left: 4px solid var(--accent-cyan); }
+        .tech-data h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
+        .tech-data p { color: rgba(255,255,255,0.8); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.5; }
+        .tech-data ul { list-style: none; }
+        .tech-data li { margin-bottom: 10px; color: var(--text-muted); font-size: 0.9rem; }
+        .tech-data li strong { color: #fff; }
+
+        /* WALLPAPERS / DOWNLOADS (Formato Vertical 9:16) */
+        .wallpaper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 35px; width: 100%; }
+        .wallpaper-card { border-radius: 16px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 9/16; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        .wallpaper-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .wallpaper-card:hover img { transform: scale(1.04); }
+        
+        .download-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 25px; background: linear-gradient(to top, rgba(3,7,8,0.95) 0%, rgba(3,7,8,0.4) 70%, transparent 100%); display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Botones estilo Apple UI */
+        .btn-download { 
+            background: var(--accent-orange); 
+            color: #fff; 
+            border: none; 
+            padding: 12px 22px; 
+            border-radius: 8px; 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-weight: 700; 
+            text-decoration: none; 
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            box-shadow: 0 4px 15px rgba(255, 95, 0, 0.25); 
+        }
+        .btn-download:hover { 
+            background: #ffffff; 
+            color: var(--bg-dark); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35); 
+        }
+
+        /* SOCIAL FOOTER */
+        footer { padding: 100px 0 60px 0; border-top: 1px solid rgba(255,255,255,0.04); text-align: center; width: 100%; position: relative; z-index: 10; }
+        .social-links { display: flex; justify-content: center; gap: 35px; margin-bottom: 25px; }
+        .social-links a { color: rgba(255,255,255,0.6); font-size: 1.8rem; transition: all 0.3s ease; text-decoration: none; }
+        .social-links a:hover { color: var(--accent-orange); transform: translateY(-3px); }
+        footer p { color: var(--text-muted); font-size: 0.85rem; letter-spacing: 0.5px; }
+    </style>
+</head>
+<body>
+
+    <div class="liquid-bg-overlay"></div>
+    <div class="noise-overlay"></div>
+    <div class="glow-orange"></div>
+    <div class="glow-cyan"></div>
+    <div class="bottom-shadow"></div>
+    
+    <div class="central-strip"></div>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-title-container">
+                <h1 class="hero-title">OTTARUM</h1>
+                <div class="hero-title-shadow">OTTARUM</div>
+            </div>
+            <p class="hero-subtitle">3D Artist & Digital Alchemist</p>
+            <p style="color: var(--text-muted); max-width: 500px; margin: 25px auto 0 auto; font-size: 1.1rem;">+5 years of experience sculpting high-fidelity visual realities and interruptions.</p>
+        </div>
+    </section>
+
+    <section id="arsenal">
+        <div class="container">
+            <h2 class="section-heading">El Arsenal Técnico</h2>
+            <div class="software-grid">
+                <div class="software-card">
+                    <i class="fa-solid fa-cube"></i>
+                    <h3>Blender</h3>
+                    <p>Core 3D & Cycles/Eevee</p>
+                </div>
+                <div class="software-card">
+                    <i class="fa-solid fa-brush"></i>
+                    <h3>Substance</h3>
+                    <p>Texturizado PBR Avanzado</p>
+                </div>
+                <div class="software-card">
+                    <i class="fa-solid fa-bezier-curve"></i>
+                    <h3>Photoshop</h3>
+                    <p>Postprocesado & Matte Painting</p>
+                </div>
+                <div class="software-card">
+                    <i class="fa-solid fa-film"></i>
+                    <h3>After Effects</h3>
+                    <p>Composición & VFX Cinéticos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-heading">Proyectos Seleccionados</h2>
+            
+            <div class="project-row">
+                <div class="media-box">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Render 1">
+                </div>
+                <div class="tech-data">
+                    <h3>Abstracción Orgánica 01</h3>
+                    <p>Exploración de dinámicas de fluidos congelados en alta densidad poligonal.</p>
+                    <ul>
+                        <li><strong>SOFTWARE:</strong> Blender / Substance Painter</li>
+                        <li><strong>RENDERING:</strong> Cycles (1000 samples)</li>
+                        <li><strong>WORK TIME:</strong> 24 Horas de Cómputo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-row">
+                <div class="media-box">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Render 2">
+                </div>
+                <div class="tech-data">
+                    <h3>Arquitectura Distópica</h3>
+                    <p>Modelado procedural enfocado en entornos modulares de ciencia ficción.</p>
+                    <ul>
+                        <li><strong>SOFTWARE:</strong> Blender / After Effects</li>
+                        <li><strong>TECH:</strong> Geometry Nodes</li>
+                        <li><strong>FORMAT:</strong> 4K UHD Ultra-wide</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="downloads">
+        <div class="container">
+            <h2 class="section-heading">Free Wallpapers // HQ</h2>
+            <p style="color: var(--text-muted); margin-top: -40px; margin-bottom: 50px; font-size: 1.2rem;">Descarga mis piezas optimizadas para pantallas móviles y de escritorio sin costo.</p>
+            
+            <div class="wallpaper-grid">
+                <div class="wallpaper-card">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 1">
+                    <div class="download-overlay">
+                        <div>
+                            <h4 style="font-weight: 700;">Neon Shift</h4>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
+                        </div>
+                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+                
+                <div class="wallpaper-card">
+                    <img src="https://images.unsplash.com/photo-1618005198143-e5283b519a7f?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 2">
+                    <div class="download-overlay">
+                        <div>
+                            <h4 style="font-weight: 700;">Chrome Flow</h4>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
+                        </div>
+                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2026 OTTARUM. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
