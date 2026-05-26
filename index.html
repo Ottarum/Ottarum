@@ -143,7 +143,9 @@
             padding: 0; 
         }
 
-        /* ESTILOS DE LA ANIMACIÓN LETRA POR LETRA */
+        /* ==========================================================================
+           ANIMACIÓN ULTRA-SMOOTH Y RÁPIDA (APPLE-STYLE INTERFACE PHYSICS)
+           ========================================================================== */
         .hero-title { 
             font-family: 'Syne', sans-serif; 
             font-size: clamp(3.5rem, 8vw, 7.8rem); 
@@ -165,35 +167,32 @@
             -webkit-text-fill-color: transparent; 
             filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
             
-            /* Estado inicial invisible antes de que comience la animación */
             opacity: 0; 
-            
-            /* Duración de la entrada y curva suave */
-            animation: letterFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            /* Rediseño de curva: Inicio explosivo, frenado ultra suave y corto recorrido (3px) */
+            animation: letterFadeInSmooth 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Retrasos secuenciales personalizados para cada letra de O-T-T-A-R-U-M (intervalos de 0.15s) */
-        .hero-title span:nth-child(1) { animation-delay: 0.1s; }
-        .hero-title span:nth-child(2) { animation-delay: 0.25s; }
-        .hero-title span:nth-child(3) { animation-delay: 0.4s; }
-        .hero-title span:nth-child(4) { animation-delay: 0.55s; }
-        .hero-title span:nth-child(5) { animation-delay: 0.7s; }
-        .hero-title span:nth-child(6) { animation-delay: 0.85s; }
-        .hero-title span:nth-child(7) { animation-delay: 1.0s; }
+        /* Secuencia acelerada al milisegundo (Pasos ultra cortos de 0.07s para mayor velocidad) */
+        .hero-title span:nth-child(1) { animation-delay: 0.05s; }
+        .hero-title span:nth-child(2) { animation-delay: 0.12s; }
+        .hero-title span:nth-child(3) { animation-delay: 0.19s; }
+        .hero-title span:nth-child(4) { animation-delay: 0.26s; }
+        .hero-title span:nth-child(5) { animation-delay: 0.33s; }
+        .hero-title span:nth-child(6) { animation-delay: 0.40s; }
+        .hero-title span:nth-child(7) { animation-delay: 0.47s; }
 
-        /* Keyframe para opacidad y una leve transición de escala vertical */
-        @keyframes letterFadeIn {
+        @keyframes letterFadeInSmooth {
             from {
                 opacity: 0;
-                transform: scale(0.96) translateY(5px);
+                transform: translateY(3px) scale(0.99);
             }
             to {
                 opacity: 1;
-                transform: scale(1) translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
         
-        /* Animación suave también para el subtítulo para que entre después del título */
+        /* El subtítulo y la descripción entran inmediatamente después de terminar el barrido */
         .hero-subtitle { 
             font-size: 1.2rem; 
             margin-top: 25px; 
@@ -202,8 +201,8 @@
             text-transform: uppercase; 
             font-weight: 700; 
             opacity: 0;
-            animation: letterFadeIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            animation-delay: 1.3s;
+            animation: letterFadeInSmooth 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.65s;
         }
         
         .hero-desc {
@@ -212,8 +211,8 @@
             margin: 25px auto 0 auto; 
             font-size: 1.1rem;
             opacity: 0;
-            animation: letterFadeIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            animation-delay: 1.5s;
+            animation: letterFadeInSmooth 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.75s;
         }
 
         /* ==========================================================================
