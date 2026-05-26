@@ -179,8 +179,8 @@
             backdrop-filter: blur(24px) saturate(160%);
             -webkit-backdrop-filter: blur(24px) saturate(160%);
             
-            /* Borde perimetral ultra fino */
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            /* Modificado: Borde perimetral con leve grosor físico y acabado translúcido en estado inicial */
+            border: 1.5px solid rgba(255, 255, 255, 0.09);
             
             /* El truco premium: Bisel de luz interno (inset) superior para dar volumen tridimensional física de vidrio */
             box-shadow: 
@@ -199,28 +199,15 @@
                         background 0.5s ease;
         }
         
+        /* Modificado: Comportamiento interactivo unificado para todos los cajones */
         .software-card:hover { 
             transform: translateY(-6px);
-            background: rgba(15, 22, 26, 0.35);
-            border-color: rgba(255, 255, 255, 0.18); 
+            background: rgba(0, 245, 255, 0.02);
+            border-color: rgba(0, 245, 255, 0.6); 
             box-shadow: 
                 inset 0px 1.5px 0px 0px rgba(255, 255, 255, 0.35),
                 0 22px 40px -10px rgba(0, 0, 0, 0.7),
-                0 0 25px rgba(255, 95, 0, 0.02);
-        }
-        
-        /* Destaque cromático fino para Blender */
-        .software-card:first-child {
-            border-color: rgba(0, 245, 255, 0.12);
-            box-shadow: 
-                inset 0px 1.5px 0px 0px rgba(0, 245, 255, 0.25),
-                0 12px 30px -5px rgba(0, 0, 0, 0.5);
-        }
-        .software-card:first-child:hover {
-            border-color: rgba(0, 245, 255, 0.35);
-            box-shadow: 
-                inset 0px 1.5px 0px 0px rgba(0, 245, 255, 0.45),
-                0 22px 40px -10px rgba(0, 0, 0, 0.7);
+                0 0 25px rgba(0, 245, 255, 0.15);
         }
 
         .software-card i { font-size: 3.2rem; color: #fff; margin-bottom: 20px; display: block; transition: transform 0.4s ease; }
@@ -229,179 +216,4 @@
         .software-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.4; }
 
         /* GALERÍA / TRABAJOS */
-        .project-row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; margin-bottom: 100px; align-items: center; width: 100%; }
-        .media-box { background: #0b1112; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); aspect-ratio: 16/9; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-        .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        
-        .tech-data { padding: 35px; background: rgba(5, 9, 10, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid rgba(255,255,255,0.04); border-left: 4px solid var(--accent-cyan); }
-        .tech-data h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
-        .tech-data p { color: rgba(255,255,255,0.8); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.5; }
-        .tech-data ul { list-style: none; }
-        .tech-data li { margin-bottom: 10px; color: var(--text-muted); font-size: 0.9rem; }
-        .tech-data li strong { color: #fff; }
-
-        /* WALLPAPERS / DOWNLOADS (Formato Vertical 9:16) */
-        .wallpaper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 35px; width: 100%; }
-        .wallpaper-card { border-radius: 16px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 9/16; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
-        .wallpaper-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .wallpaper-card:hover img { transform: scale(1.04); }
-        
-        .download-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 25px; background: linear-gradient(to top, rgba(3,7,8,0.95) 0%, rgba(3,7,8,0.4) 70%, transparent 100%); display: flex; justify-content: space-between; align-items: center; }
-        
-        /* Botones estilo Apple UI: Minimalistas, con microbordes limpios */
-        .btn-download { 
-            background: var(--accent-orange); 
-            color: #fff; 
-            border: none; 
-            padding: 12px 22px; 
-            border-radius: 8px; 
-            font-family: 'Space Grotesk', sans-serif; 
-            font-weight: 700; 
-            text-decoration: none; 
-            cursor: pointer; 
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            box-shadow: 0 4px 15px rgba(255, 95, 0, 0.25); 
-        }
-        .btn-download:hover { 
-            background: #ffffff; 
-            color: var(--bg-dark); 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35); 
-        }
-
-        /* SOCIAL FOOTER */
-        footer { padding: 100px 0 60px 0; border-top: 1px solid rgba(255,255,255,0.04); text-align: center; width: 100%; position: relative; z-index: 10; }
-        .social-links { display: flex; justify-content: center; gap: 35px; margin-bottom: 25px; }
-        .social-links a { color: rgba(255,255,255,0.6); font-size: 1.8rem; transition: all 0.3s ease; text-decoration: none; }
-        .social-links a:hover { color: var(--accent-orange); transform: translateY(-3px); }
-        footer p { color: var(--text-muted); font-size: 0.85rem; letter-spacing: 0.5px; }
-    </style>
-</head>
-<body>
-
-    <div class="liquid-bg-overlay"></div>
-    <div class="noise-overlay"></div>
-    <div class="glow-orange"></div>
-    <div class="glow-cyan"></div>
-    <div class="bottom-shadow"></div>
-    
-    <div class="central-strip"></div>
-
-    <section id="hero">
-        <div class="container">
-            <h1 class="hero-title">OTTARUM</h1>
-            <p class="hero-subtitle">3D Artist & Digital Alchemist</p>
-            <p style="color: var(--text-muted); max-width: 500px; margin: 25px auto 0 auto; font-size: 1.1rem;">+5 años de experiencia esculpiendo realidades e interrupciones visuales de alta fidelidad.</p>
-        </div>
-    </section>
-
-    <section id="arsenal">
-        <div class="container">
-            <h2 class="section-heading">El Arsenal Técnico</h2>
-            <div class="software-grid">
-                <div class="software-card">
-                    <i class="fa-solid fa-cube"></i>
-                    <h3>Blender</h3>
-                    <p>Core 3D & Cycles/Eevee</p>
-                </div>
-                <div class="software-card">
-                    <i class="fa-solid fa-brush"></i>
-                    <h3>Substance</h3>
-                    <p>Texturizado PBR Avanzado</p>
-                </div>
-                <div class="software-card">
-                    <i class="fa-solid fa-bezier-curve"></i>
-                    <h3>Photoshop</h3>
-                    <p>Postprocesado & Matte Painting</p>
-                </div>
-                <div class="software-card">
-                    <i class="fa-solid fa-film"></i>
-                    <h3>After Effects</h3>
-                    <p>Composición & VFX Cinéticos</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery">
-        <div class="container">
-            <h2 class="section-heading">Proyectos Seleccionados</h2>
-            
-            <div class="project-row">
-                <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Render 1">
-                </div>
-                <div class="tech-data">
-                    <h3>Abstracción Orgánica 01</h3>
-                    <p>Exploración de dinámicas de fluidos congelados en alta densidad poligonal.</p>
-                    <ul>
-                        <li><strong>SOFTWARE:</strong> Blender / Substance Painter</li>
-                        <li><strong>RENDERING:</strong> Cycles (1000 samples)</li>
-                        <li><strong>WORK TIME:</strong> 24 Horas de Cómputo</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="project-row">
-                <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Render 2">
-                </div>
-                <div class="tech-data">
-                    <h3>Arquitectura Distópica</h3>
-                    <p>Modelado procedural enfocado en entornos modulares de ciencia ficción.</p>
-                    <ul>
-                        <li><strong>SOFTWARE:</strong> Blender / After Effects</li>
-                        <li><strong>TECH:</strong> Geometry Nodes</li>
-                        <li><strong>FORMAT:</strong> 4K UHD Ultra-wide</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="downloads">
-        <div class="container">
-            <h2 class="section-heading">Free Wallpapers // HQ</h2>
-            <p style="color: var(--text-muted); margin-top: -40px; margin-bottom: 50px; font-size: 1.2rem;">Descarga mis piezas optimizadas para pantallas móviles y de escritorio sin costo.</p>
-            
-            <div class="wallpaper-grid">
-                <div class="wallpaper-card">
-                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 1">
-                    <div class="download-overlay">
-                        <div>
-                            <h4 style="font-weight: 700;">Neon Shift</h4>
-                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
-                        </div>
-                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
-                    </div>
-                </div>
-                
-                <div class="wallpaper-card">
-                    <img src="https://images.unsplash.com/photo-1618005198143-e5283b519a7f?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 2">
-                    <div class="download-overlay">
-                        <div>
-                            <h4 style="font-weight: 700;">Chrome Flow</h4>
-                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
-                        </div>
-                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-            <p>&copy; 2026 OTTARUM. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+        .project-row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; margin-bottom: 100px; align-items: center; width: 100
