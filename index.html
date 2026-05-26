@@ -143,6 +143,7 @@
             padding: 0; 
         }
 
+        /* ESTILOS DE LA ANIMACIÓN LETRA POR LETRA */
         .hero-title { 
             font-family: 'Syne', sans-serif; 
             font-size: clamp(3.5rem, 8vw, 7.8rem); 
@@ -152,17 +153,68 @@
             letter-spacing: -3px; 
             width: 100%;
             word-break: break-word;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-            /* CONFIGURACIÓN SIMPLE: Letras sólidas con leve degradado de arriba a abajo */
+        .hero-title span {
+            display: inline-block;
             background: linear-gradient(to bottom, #ffffff 30%, #cbd5e1 100%);
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            
-            /* Sombra paralela limpia para separarlo elegantemente del fondo */
             filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
+            
+            /* Estado inicial invisible antes de que comience la animación */
+            opacity: 0; 
+            
+            /* Duración de la entrada y curva suave */
+            animation: letterFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* Retrasos secuenciales personalizados para cada letra de O-T-T-A-R-U-M (intervalos de 0.15s) */
+        .hero-title span:nth-child(1) { animation-delay: 0.1s; }
+        .hero-title span:nth-child(2) { animation-delay: 0.25s; }
+        .hero-title span:nth-child(3) { animation-delay: 0.4s; }
+        .hero-title span:nth-child(4) { animation-delay: 0.55s; }
+        .hero-title span:nth-child(5) { animation-delay: 0.7s; }
+        .hero-title span:nth-child(6) { animation-delay: 0.85s; }
+        .hero-title span:nth-child(7) { animation-delay: 1.0s; }
+
+        /* Keyframe para opacidad y una leve transición de escala vertical */
+        @keyframes letterFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
         
-        .hero-subtitle { font-size: 1.2rem; margin-top: 25px; color: var(--accent-orange); letter-spacing: 5px; text-transform: uppercase; font-weight: 700; }
+        /* Animación suave también para el subtítulo para que entre después del título */
+        .hero-subtitle { 
+            font-size: 1.2rem; 
+            margin-top: 25px; 
+            color: var(--accent-orange); 
+            letter-spacing: 5px; 
+            text-transform: uppercase; 
+            font-weight: 700; 
+            opacity: 0;
+            animation: letterFadeIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 1.3s;
+        }
+        
+        .hero-desc {
+            color: var(--text-muted); 
+            max-width: 500px; 
+            margin: 25px auto 0 auto; 
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: letterFadeIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 1.5s;
+        }
 
         /* ==========================================================================
            ARSENAL / SOFTWARE (ESTILO GLASSMORPHISM AVANZADO - APPLE STYLE)
@@ -270,9 +322,11 @@
 
     <section id="hero">
         <div class="container">
-            <h1 class="hero-title">OTTARUM</h1>
+            <h1 class="hero-title">
+                <span>O</span><span>T</span><span>T</span><span>A</span><span>R</span><span>U</span><span>M</span>
+            </h1>
             <p class="hero-subtitle">3D Artist & Digital Alchemist</p>
-            <p style="color: var(--text-muted); max-width: 500px; margin: 25px auto 0 auto; font-size: 1.1rem;">+5 years of experience sculpting high-fidelity visual realities and interruptions.</p>
+            <p class="hero-desc">+5 years of experience sculpting high-fidelity visual realities and interruptions.</p>
         </div>
     </section>
 
