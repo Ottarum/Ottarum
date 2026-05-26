@@ -38,7 +38,6 @@
             height: 140vh;
             pointer-events: none;
             z-index: -3;
-            /* Actualizado a tu nuevo archivo .webp optimizado de 568 KB */
             background-image: url('figuenoise.webp'); 
             background-size: cover;
             background-position: center top;
@@ -60,9 +59,9 @@
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             z-index: 9999;
-            opacity: 0.11; /* Ajustado para un grano fino, sutil y estético */
+            opacity: 0.11;
             background-image: url('grano_pelicula_ottarum.png.png'); 
-            background-size: 240px 240px; /* Textura repetida en mosaico pequeño para nitidez 4K */
+            background-size: 240px 240px;
             mix-blend-mode: overlay; 
         }
 
@@ -103,8 +102,6 @@
             pointer-events: none;
             border-left: 1px solid rgba(255, 255, 255, 0.02);
             border-right: 1px solid rgba(255, 255, 255, 0.02);
-            
-            /* Degradado corregido para evitar saltos de color o errores de lectura en navegadores */
             background: linear-gradient(
                 to right, 
                 rgba(3, 7, 8, 0.5) 0%, 
@@ -112,7 +109,6 @@
                 rgba(3, 7, 8, 0.05) 80%, 
                 rgba(3, 7, 8, 0.5) 100%
             );
-            
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
@@ -154,12 +150,25 @@
             line-height: 0.85; 
             text-transform: uppercase; 
             letter-spacing: -3px; 
-            background: linear-gradient(180deg, #ffffff 40%, rgba(255,255,255,0.6) 100%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
             width: 100%;
             word-break: break-word;
+
+            /* NUEVO: Acabado reflectivo translúcido/metalizado basado en tu muestra */
+            background: linear-gradient(
+                180deg, 
+                #ffffff 0%, 
+                #e2e8f0 25%, 
+                #8a99ad 48%, 
+                #ffffff 52%, 
+                #cbd5e1 75%, 
+                #708090 100%
+            ); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            
+            /* Sombra pulida que simula volumen físico y refracción */
+            filter: drop-shadow(0 2px 1px rgba(255, 255, 255, 0.3)) 
+                    drop-shadow(0 15px 25px rgba(0, 0, 0, 0.7));
         }
         
         .hero-subtitle { font-size: 1.2rem; margin-top: 25px; color: var(--accent-orange); letter-spacing: 5px; text-transform: uppercase; font-weight: 700; }
@@ -172,22 +181,14 @@
         .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; width: 100%; }
         
         .software-card { 
-            /* Fondo de cristal oscuro súper fluido y realista */
             background: rgba(10, 15, 18, 0.25);
-            
-            /* Difuminado pesado y saturación para distorsionar el fondo orgánico al estilo iOS/macOS */
             backdrop-filter: blur(24px) saturate(160%);
             -webkit-backdrop-filter: blur(24px) saturate(160%);
-            
-            /* Modificado: Borde perimetral con leve grosor físico y acabado translúcido en estado inicial */
             border: 1.5px solid rgba(255, 255, 255, 0.09);
-            
-            /* El truco premium: Bisel de luz interno (inset) superior para dar volumen tridimensional física de vidrio */
             box-shadow: 
                 inset 0px 1.5px 0px 0px rgba(255, 255, 255, 0.18),
                 0 12px 30px -5px rgba(0, 0, 0, 0.5),
                 0 4px 10px -2px rgba(0, 0, 0, 0.3);
-            
             padding: 50px 25px; 
             border-radius: 20px; 
             text-align: center; 
@@ -199,7 +200,6 @@
                         background 0.5s ease;
         }
         
-        /* Modificado: Comportamiento interactivo unificado para todos los cajones */
         .software-card:hover { 
             transform: translateY(-6px);
             background: rgba(0, 245, 255, 0.02);
@@ -235,7 +235,7 @@
         
         .download-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 25px; background: linear-gradient(to top, rgba(3,7,8,0.95) 0%, rgba(3,7,8,0.4) 70%, transparent 100%); display: flex; justify-content: space-between; align-items: center; }
         
-        /* Botones estilo Apple UI: Minimalistas, con microbordes limpios */
+        /* Botones estilo Apple UI */
         .btn-download { 
             background: var(--accent-orange); 
             color: #fff; 
@@ -281,7 +281,7 @@
         <div class="container">
             <h1 class="hero-title">OTTARUM</h1>
             <p class="hero-subtitle">3D Artist & Digital Alchemist</p>
-            <p style="color: var(--text-muted); max-width: 500px; margin: 25px auto 0 auto; font-size: 1.1rem;">+5 años de experiencia esculpiendo realidades e interrupciones visuales de alta fidelidad.</p>
+            <p style="color: var(--text-muted); max-width: 500px; margin: 25px auto 0 auto; font-size: 1.1rem;">+5 years of experience sculpting high-fidelity visual realities and interruptions.</p>
         </div>
     </section>
 
