@@ -1,108 +1,353 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ottarum // The Technical Arsenal</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <title>Ottarum // 3D Digital Artist</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    
     <style>
-        /* Estilos base */
+        :root {
+            --bg-dark: #030708;
+            --accent-orange: #ff5f00;
+            --accent-cyan: #00f5ff;
+            --text-muted: #8a99ad;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            background-color: #030708; /* Fondo oscuro */
+            background-color: var(--bg-dark);
             color: #ffffff;
             font-family: 'Space Grotesk', sans-serif;
-            margin: 0;
-            padding: 0;
+            overflow-x: hidden;
         }
 
-        /* Contenedor principal */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 20px;
+        /* ==========================================================================
+           FONDO LÍQUIDO OPTIMIZADO (WEBP) CON EFECTO PARALLAX
+           ========================================================================== */
+        .liquid-bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 140vh;
+            pointer-events: none;
+            z-index: -3;
+            background-image: url('figuenoise.webp'); 
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            opacity: 1;
+            animation: parallaxScroll linear both;
+            animation-timeline: scroll(root);
+            animation-range: start end;
         }
 
-        /* Título de la sección */
-        .section-heading {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            margin-bottom: 60px;
-            border-left: 4px solid #ff5f00; /* Línea naranja */
-            padding-left: 20px;
+        @keyframes parallaxScroll {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20vh); }
         }
 
-        /* Cuadrícula de software */
-        .software-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
+        /* CAPA DE GRANO CINEMATOGRÁFICO DE ALTA FIDELIDAD */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.11;
+            background-image: url('grano_pelicula_ottarum.png.png'); 
+            background-size: 240px 240px;
+            mix-blend-mode: overlay; 
         }
 
-        /* Tarjetas estilo cristal (Glassmorphism) */
-        .software-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px 20px;
-            border-radius: 20px;
-            text-align: center;
-            transition: transform 0.3s ease;
+        /* Atmósfera de Luces de Fondo (Glow perimetral) */
+        .glow-orange {
+            position: fixed; width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(255, 95, 0, 0.12) 0%, transparent 70%);
+            top: -200px; left: -100px; z-index: -2; pointer-events: none; filter: blur(100px);
+        }
+        .glow-cyan {
+            position: fixed; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0, 245, 255, 0.08) 0%, transparent 70%);
+            bottom: -100px; right: -100px; z-index: -2; pointer-events: none; filter: blur(100px);
         }
 
-        .software-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
+        /* SOMBREADO NEGRO INFERIOR PARA INTEGRACIÓN DEL CONTENIDO */
+        .bottom-shadow {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 35vh;
+            background: linear-gradient(to bottom, rgba(3, 7, 8, 0) 0%, var(--bg-dark) 100%);
+            pointer-events: none;
+            z-index: -2;
         }
 
-        /* Iconos */
-        .software-card i {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-            color: #ffffff;
+        /* FRANJA VERTICAL CENTRAL CRISTALIZADA */
+        .central-strip {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1300px;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            border-left: 1px solid rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            background: linear-gradient(
+                to right, 
+                rgba(3, 7, 8, 0.5) 0%, 
+                rgba(3, 7, 8, 0.05) 20%, 
+                rgba(3, 7, 8, 0.05) 80%, 
+                rgba(3, 7, 8, 0.5) 100%
+            );
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
         }
 
-        .software-card h3 {
-            font-size: 1.2rem;
-            margin: 10px 0;
+        /* Contenedores */
+        .container { 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            padding: 0 60px; 
+            width: 100%; 
+            position: relative;
+            z-index: 2;
         }
 
-        .software-card p {
-            font-size: 0.9rem;
-            color: #a0a0a0;
+        section { 
+            padding: 120px 0; 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            position: relative; 
+            width: 100%;
         }
+
+        /* HERO SECTION */
+        #hero { 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding: 0; 
+        }
+
+        /* ==========================================================================
+           ANIMACIÓN ULTRA-SMOOTH Y RÁPIDA (APPLE-STYLE INTERFACE PHYSICS)
+           ========================================================================== */
+        .hero-title { 
+            font-family: 'Syne', sans-serif; 
+            font-size: clamp(3.5rem, 8vw, 7.8rem); 
+            font-weight: 800; 
+            line-height: 0.85; 
+            text-transform: uppercase; 
+            letter-spacing: -3px; 
+            width: 100%;
+            word-break: break-word;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-title span {
+            display: inline-block;
+            background: linear-gradient(to bottom, #ffffff 30%, #cbd5e1 100%);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
+            
+            opacity: 0; 
+            /* Rediseño de curva: Inicio explosivo, frenado ultra suave y corto recorrido (3px) */
+            animation: letterFadeInSmooth 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Secuencia acelerada al milisegundo (Pasos ultra cortos de 0.07s para mayor velocidad) */
+        .hero-title span:nth-child(1) { animation-delay: 0.05s; }
+        .hero-title span:nth-child(2) { animation-delay: 0.12s; }
+        .hero-title span:nth-child(3) { animation-delay: 0.19s; }
+        .hero-title span:nth-child(4) { animation-delay: 0.26s; }
+        .hero-title span:nth-child(5) { animation-delay: 0.33s; }
+        .hero-title span:nth-child(6) { animation-delay: 0.40s; }
+        .hero-title span:nth-child(7) { animation-delay: 0.47s; }
+
+        @keyframes letterFadeInSmooth {
+            from {
+                opacity: 0;
+                transform: translateY(3px) scale(0.99);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        /* El subtítulo y la descripción entran inmediatamente después de terminar el barrido */
+        .hero-subtitle { 
+            font-size: 1.2rem; 
+            margin-top: 25px; 
+            color: var(--accent-orange); 
+            letter-spacing: 5px; 
+            text-transform: uppercase; 
+            font-weight: 700; 
+            opacity: 0;
+            animation: letterFadeInSmooth 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.65s;
+        }
+        
+        .hero-desc {
+            color: var(--text-muted); 
+            max-width: 500px; 
+            margin: 25px auto 0 auto; 
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: letterFadeInSmooth 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.75s;
+        }
+
+        /* ==========================================================================
+           ARSENAL / SOFTWARE (ESTILO GLASSMORPHISM AVANZADO - APPLE STYLE)
+           ========================================================================== */
+        h2.section-heading { font-family: 'Syne', sans-serif; font-size: 2.8rem; margin-bottom: 60px; text-transform: uppercase; border-left: 4px solid var(--accent-orange); padding-left: 20px; width: 100%; }
+        
+        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; width: 100%; }
+        
+        .software-card { 
+            background: rgba(10, 15, 18, 0.25);
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
+            border: 1.5px solid rgba(255, 255, 255, 0.09);
+            box-shadow: 
+                inset 0px 1.5px 0px 0px rgba(255, 255, 255, 0.18),
+                0 12px 30px -5px rgba(0, 0, 0, 0.5),
+                0 4px 10px -2px rgba(0, 0, 0, 0.3);
+            padding: 50px 25px; 
+            border-radius: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.5s ease, 
+                        box-shadow 0.5s ease,
+                        background 0.5s ease;
+        }
+        
+        .software-card:hover { 
+            transform: translateY(-6px);
+            background: rgba(0, 245, 255, 0.02);
+            border-color: rgba(0, 245, 255, 0.6); 
+            box-shadow: 
+                inset 0px 1.5px 0px 0px rgba(255, 255, 255, 0.35),
+                0 22px 40px -10px rgba(0, 0, 0, 0.7),
+                0 0 25px rgba(0, 245, 255, 0.15);
+        }
+
+        .software-card i { font-size: 3.2rem; color: #fff; margin-bottom: 20px; display: block; transition: transform 0.4s ease; }
+        .software-card:hover i { transform: scale(1.05) translateY(-2px); }
+        .software-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .software-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.4; }
+
+        /* GALERÍA / TRABAJOS */
+        .project-row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; margin-bottom: 100px; align-items: center; width: 100%; }
+        .media-box { background: #0b1112; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); aspect-ratio: 16/9; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        .tech-data { padding: 35px; background: rgba(5, 9, 10, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid rgba(255,255,255,0.04); border-left: 4px solid var(--accent-cyan); }
+        .tech-data h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; }
+        .tech-data p { color: rgba(255,255,255,0.8); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.5; }
+        .tech-data ul { list-style: none; }
+        .tech-data li { margin-bottom: 10px; color: var(--text-muted); font-size: 0.9rem; }
+        .tech-data li strong { color: #fff; }
+
+        /* WALLPAPERS / DOWNLOADS (Formato Vertical 9:16) */
+        .wallpaper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 35px; width: 100%; }
+        .wallpaper-card { border-radius: 16px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 9/16; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        .wallpaper-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .wallpaper-card:hover img { transform: scale(1.04); }
+        
+        .download-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 25px; background: linear-gradient(to top, rgba(3,7,8,0.95) 0%, rgba(3,7,8,0.4) 70%, transparent 100%); display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Botones estilo Apple UI */
+        .btn-download { 
+            background: var(--accent-orange); 
+            color: #fff; 
+            border: none; 
+            padding: 12px 22px; 
+            border-radius: 8px; 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-weight: 700; 
+            text-decoration: none; 
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            box-shadow: 0 4px 15px rgba(255, 95, 0, 0.25); 
+        }
+        .btn-download:hover { 
+            background: #ffffff; 
+            color: var(--bg-dark); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35); 
+        }
+
+        /* SOCIAL FOOTER */
+        footer { padding: 100px 0 60px 0; border-top: 1px solid rgba(255,255,255,0.04); text-align: center; width: 100%; position: relative; z-index: 10; }
+        .social-links { display: flex; justify-content: center; gap: 35px; margin-bottom: 25px; }
+        .social-links a { color: rgba(255,255,255,0.6); font-size: 1.8rem; transition: all 0.3s ease; text-decoration: none; }
+        .social-links a:hover { color: var(--accent-orange); transform: translateY(-3px); }
+        footer p { color: var(--text-muted); font-size: 0.85rem; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
 
+    <div class="liquid-bg-overlay"></div>
+    <div class="noise-overlay"></div>
+    <div class="glow-orange"></div>
+    <div class="glow-cyan"></div>
+    <div class="bottom-shadow"></div>
+    
+    <div class="central-strip"></div>
+
+    <section id="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                <span>O</span><span>T</span><span>T</span><span>A</span><span>R</span><span>U</span><span>M</span>
+            </h1>
+            <p class="hero-subtitle">3D Artist & Digital Alchemist</p>
+            <p class="hero-desc">+5 years of experience sculpting high-fidelity visual realities and interruptions.</p>
+        </div>
+    </section>
+
     <section id="arsenal">
         <div class="container">
             <h2 class="section-heading">The Technical Arsenal</h2>
-            
             <div class="software-grid">
                 <div class="software-card">
-                    <i class="fa-solid fa-cube"></i>
+                    <img src="blender.png" alt="Blender" style="width: 50px; height: 50px; display: block; margin: 0 auto 20px auto; filter: brightness(0) invert(1);">
                     <h3>Blender</h3>
                     <p>Core 3D & Cycles/Eevee</p>
                 </div>
-
                 <div class="software-card">
                     <i class="fa-solid fa-spray-can"></i>
                     <h3>Substance</h3>
                     <p>Advanced PBR Texturing</p>
                 </div>
-
                 <div class="software-card">
                     <i class="fa-solid fa-layer-group"></i>
                     <h3>Photoshop</h3>
                     <p>Post-processing & Matte Painting</p>
                 </div>
-
                 <div class="software-card">
                     <i class="fa-solid fa-clapperboard"></i>
                     <h3>After Effects</h3>
@@ -111,6 +356,83 @@
             </div>
         </div>
     </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-heading">Selected Projects</h2>
+            
+            <div class="project-row">
+                <div class="media-box">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Render 1">
+                </div>
+                <div class="tech-data">
+                    <h3>Organic Abstraction 01</h3>
+                    <p>Exploration of frozen fluid dynamics in high polygonal density.</p>
+                    <ul>
+                        <li><strong>SOFTWARE:</strong> Blender / Substance Painter</li>
+                        <li><strong>RENDERING:</strong> Cycles (1000 samples)</li>
+                        <li><strong>WORK TIME:</strong> 24 Hours of Compute</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-row">
+                <div class="media-box">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Render 2">
+                </div>
+                <div class="tech-data">
+                    <h3>Dystopian Architecture</h3>
+                    <p>Procedural modeling focused on sci-fi modular environments.</p>
+                    <ul>
+                        <li><strong>SOFTWARE:</strong> Blender / After Effects</li>
+                        <li><strong>TECH:</strong> Geometry Nodes</li>
+                        <li><strong>FORMAT:</strong> 4K UHD Ultra-wide</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="downloads">
+        <div class="container">
+            <h2 class="section-heading">Free Wallpapers // HQ</h2>
+            <p style="color: var(--text-muted); margin-top: -40px; margin-bottom: 50px; font-size: 1.2rem;">Download my pieces optimized for mobile and desktop screens at no cost.</p>
+            
+            <div class="wallpaper-grid">
+                <div class="wallpaper-card">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 1">
+                    <div class="download-overlay">
+                        <div>
+                            <h4 style="font-weight: 700;">Neon Shift</h4>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
+                        </div>
+                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+                
+                <div class="wallpaper-card">
+                    <img src="https://images.unsplash.com/photo-1618005198143-e5283b519a7f?auto=format&fit=crop&w=600&q=80" alt="Wallpaper 2">
+                    <div class="download-overlay">
+                        <div>
+                            <h4 style="font-weight: 700;">Chrome Flow</h4>
+                            <p style="color: var(--text-muted); font-size: 0.8rem;">Vertical 4K</p>
+                        </div>
+                        <a href="#" class="btn-download" download><i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2026 OTTARUM. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
