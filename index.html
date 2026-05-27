@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,7 @@
         }
 
         /* ==========================================================================
-           FONDO LÍQUIDO OPTIMIZADO (WEBP) CON EFECTO PARALLAX
+           OPTIMIZED LIQUID BACKGROUND (WEBP) WITH PARALLAX EFFECT
            ========================================================================== */
         .liquid-bg-overlay {
             position: fixed;
@@ -53,7 +53,7 @@
             to { transform: translateY(-20vh); }
         }
 
-        /* CAPA DE GRANO CINEMATOGRÁFICO DE ALTA FIDELIDAD */
+        /* HIGH-FIDELITY CINEMATIC GRAIN OVERLAY */
         .noise-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -65,7 +65,7 @@
             mix-blend-mode: overlay; 
         }
 
-        /* Atmósfera de Luces de Fondo (Glow perimetral) */
+        /* Background Atmosphere Lights (Perimetric Glow) */
         .glow-orange {
             position: fixed; width: 700px; height: 700px;
             background: radial-gradient(circle, rgba(255, 95, 0, 0.12) 0%, transparent 70%);
@@ -77,7 +77,7 @@
             bottom: -100px; right: -100px; z-index: -2; pointer-events: none; filter: blur(100px);
         }
 
-        /* SOMBREADO NEGRO INFERIOR PARA INTEGRACIÓN DEL CONTENIDO */
+        /* BOTTOM BLACK SHADOW FOR CONTENT INTEGRATION */
         .bottom-shadow {
             position: fixed;
             bottom: 0;
@@ -89,7 +89,7 @@
             z-index: -2;
         }
 
-        /* FRANJA VERTICAL CENTRAL CRISTALIZADA */
+        /* CRYSTALLIZED CENTRAL VERTICAL STRIP */
         .central-strip {
             position: fixed;
             top: 0;
@@ -114,7 +114,7 @@
             box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
         }
 
-        /* Contenedores */
+        /* Containers */
         .container { 
             max-width: 1300px; 
             margin: 0 auto; 
@@ -144,7 +144,7 @@
         }
 
         /* ==========================================================================
-           ANIMACIÓN ULTRA-SMOOTH Y RÁPIDA (APPLE-STYLE INTERFACE PHYSICS)
+           ULTRA-SMOOTH AND FAST ANIMATION (APPLE-STYLE INTERFACE PHYSICS)
            ========================================================================== */
         .hero-title { 
             font-family: 'Syne', sans-serif; 
@@ -168,11 +168,11 @@
             filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
             
             opacity: 0; 
-            /* Rediseño de curva: Inicio explosivo, frenado ultra suave y corto recorrido (3px) */
+            /* Curve redesign: Explosive start, ultra-smooth deceleration, short travel (3px) */
             animation: letterFadeInSmooth 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Secuencia acelerada al milisegundo (Pasos ultra cortos de 0.07s para mayor velocidad) */
+        /* Accelerated millisecond sequence (Ultra-short 0.07s steps for higher speed) */
         .hero-title span:nth-child(1) { animation-delay: 0.05s; }
         .hero-title span:nth-child(2) { animation-delay: 0.12s; }
         .hero-title span:nth-child(3) { animation-delay: 0.19s; }
@@ -192,7 +192,7 @@
             }
         }
         
-        /* El subtítulo y la descripción entran inmediatamente después de terminar el barrido */
+        /* Subtitle and description enter immediately after the sequence finishes */
         .hero-subtitle { 
             font-size: 1.2rem; 
             margin-top: 25px; 
@@ -216,7 +216,7 @@
         }
 
         /* ==========================================================================
-           ARSENAL / SOFTWARE (ESTILO GLASSMORPHISM AVANZADO - APPLE STYLE)
+           ARSENAL / SOFTWARE (ADVANCED GLASSMORPHISM STYLE - APPLE STYLE)
            ========================================================================== */
         h2.section-heading { font-family: 'Syne', sans-serif; font-size: 2.8rem; margin-bottom: 60px; text-transform: uppercase; border-left: 4px solid var(--accent-orange); padding-left: 20px; width: 100%; }
         
@@ -257,7 +257,7 @@
         .software-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
         .software-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.4; }
 
-        /* GALERÍA / TRABAJOS */
+        /* GALLERY / PROJECTS */
         .project-row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; margin-bottom: 100px; align-items: center; width: 100%; }
         .media-box { background: #0b1112; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); aspect-ratio: 16/9; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -269,7 +269,7 @@
         .tech-data li { margin-bottom: 10px; color: var(--text-muted); font-size: 0.9rem; }
         .tech-data li strong { color: #fff; }
 
-        /* WALLPAPERS / DOWNLOADS (Formato Vertical 9:16) */
+        /* WALLPAPERS / DOWNLOADS (Vertical Format 9:16) */
         .wallpaper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 35px; width: 100%; }
         .wallpaper-card { border-radius: 16px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 9/16; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
         .wallpaper-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -277,7 +277,7 @@
         
         .download-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 25px; background: linear-gradient(to top, rgba(3,7,8,0.95) 0%, rgba(3,7,8,0.4) 70%, transparent 100%); display: flex; justify-content: space-between; align-items: center; }
         
-        /* Botones estilo Apple UI */
+        /* Apple UI Style Buttons */
         .btn-download { 
             background: var(--accent-orange); 
             color: #fff; 
@@ -331,7 +331,7 @@
 
     <section id="arsenal">
         <div class="container">
-            <h2 class="section-heading">El Arsenal Técnico</h2>
+            <h2 class="section-heading">The Technical Arsenal</h2>
             <div class="software-grid">
                 <div class="software-card">
                     <i class="fa-solid fa-cube"></i>
@@ -341,17 +341,17 @@
                 <div class="software-card">
                     <i class="fa-solid fa-brush"></i>
                     <h3>Substance</h3>
-                    <p>Texturizado PBR Avanzado</p>
+                    <p>Advanced PBR Texturing</p>
                 </div>
                 <div class="software-card">
                     <i class="fa-solid fa-bezier-curve"></i>
                     <h3>Photoshop</h3>
-                    <p>Postprocesado & Matte Painting</p>
+                    <p>Post-processing & Matte Painting</p>
                 </div>
                 <div class="software-card">
                     <i class="fa-solid fa-film"></i>
                     <h3>After Effects</h3>
-                    <p>Composición & VFX Cinéticos</p>
+                    <p>Compositing & Kinetic VFX</p>
                 </div>
             </div>
         </div>
@@ -359,19 +359,19 @@
 
     <section id="gallery">
         <div class="container">
-            <h2 class="section-heading">Proyectos Seleccionados</h2>
+            <h2 class="section-heading">Selected Projects</h2>
             
             <div class="project-row">
                 <div class="media-box">
                     <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Render 1">
                 </div>
                 <div class="tech-data">
-                    <h3>Abstracción Orgánica 01</h3>
-                    <p>Exploración de dinámicas de fluidos congelados en alta densidad poligonal.</p>
+                    <h3>Organic Abstraction 01</h3>
+                    <p>Exploration of frozen fluid dynamics in high polygonal density.</p>
                     <ul>
                         <li><strong>SOFTWARE:</strong> Blender / Substance Painter</li>
                         <li><strong>RENDERING:</strong> Cycles (1000 samples)</li>
-                        <li><strong>WORK TIME:</strong> 24 Horas de Cómputo</li>
+                        <li><strong>WORK TIME:</strong> 24 Compute Hours</li>
                     </ul>
                 </div>
             </div>
@@ -381,8 +381,8 @@
                     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Render 2">
                 </div>
                 <div class="tech-data">
-                    <h3>Arquitectura Distópica</h3>
-                    <p>Modelado procedural enfocado en entornos modulares de ciencia ficción.</p>
+                    <h3>Dystopian Architecture</h3>
+                    <p>Procedural modeling focused on sci-fi modular environments.</p>
                     <ul>
                         <li><strong>SOFTWARE:</strong> Blender / After Effects</li>
                         <li><strong>TECH:</strong> Geometry Nodes</li>
@@ -396,7 +396,7 @@
     <section id="downloads">
         <div class="container">
             <h2 class="section-heading">Free Wallpapers // HQ</h2>
-            <p style="color: var(--text-muted); margin-top: -40px; margin-bottom: 50px; font-size: 1.2rem;">Descarga mis piezas optimizadas para pantallas móviles y de escritorio sin costo.</p>
+            <p style="color: var(--text-muted); margin-top: -40px; margin-bottom: 50px; font-size: 1.2rem;">Download my pieces optimized for mobile and desktop screens at no cost.</p>
             
             <div class="wallpaper-grid">
                 <div class="wallpaper-card">
@@ -430,7 +430,7 @@
                 <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
-            <p>&copy; 2026 OTTARUM. Todos los derechos reservados.</p>
+            <p>&copy; 2026 OTTARUM. All rights reserved.</p>
         </div>
     </footer>
 
