@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +16,7 @@
             --accent-orange: #ff5f00;
             --accent-cyan: #00f5ff;
             --text-muted: #8a99ad;
+            --blender-color: #E87D0D;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,115 +28,93 @@
             overflow-x: hidden;
         }
 
-        /* FONDO LÍQUIDO */
+        /* Elementos de fondo */
         .liquid-bg-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 140vh; pointer-events: none; z-index: -3;
-            background-image: url('figuenoise.webp'); 
             background-size: cover; background-position: center top; background-repeat: no-repeat;
-            opacity: 1; animation: parallaxScroll linear both; animation-timeline: scroll(root); animation-range: start end;
-        }
-
-        @keyframes parallaxScroll { from { transform: translateY(0); } to { transform: translateY(-20vh); } }
-
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.11;
-            background-image: url('grano_pelicula_ottarum.png.png'); background-size: 240px 240px; mix-blend-mode: overlay; 
-        }
-
-        .glow-orange { position: fixed; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 95, 0, 0.12) 0%, transparent 70%); top: -200px; left: -100px; z-index: -2; pointer-events: none; filter: blur(100px); }
-        .glow-cyan { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0, 245, 255, 0.08) 0%, transparent 70%); bottom: -100px; right: -100px; z-index: -2; pointer-events: none; filter: blur(100px); }
-        .bottom-shadow { position: fixed; bottom: 0; left: 0; width: 100%; height: 35vh; background: linear-gradient(to bottom, rgba(3, 7, 8, 0) 0%, var(--bg-dark) 100%); pointer-events: none; z-index: -2; }
-        .central-strip {
-            position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1300px; height: 100vh; z-index: -1; pointer-events: none;
-            border-left: 1px solid rgba(255, 255, 255, 0.02); border-right: 1px solid rgba(255, 255, 255, 0.02);
-            background: linear-gradient(to right, rgba(3, 7, 8, 0.5) 0%, rgba(3, 7, 8, 0.05) 20%, rgba(3, 7, 8, 0.05) 80%, rgba(3, 7, 8, 0.5) 100%);
-            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
+            opacity: 1;
         }
 
         .container { max-width: 1300px; margin: 0 auto; padding: 0 60px; width: 100%; position: relative; z-index: 2; }
-        section { padding: 120px 0; min-height: 100vh; display: flex; align-items: center; position: relative; width: 100%; }
-        #hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0; }
+        section { padding: 120px 0; min-height: 100vh; display: flex; align-items: center; width: 100%; }
 
-        .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(3.5rem, 8vw, 7.8rem); font-weight: 800; line-height: 0.85; text-transform: uppercase; letter-spacing: -3px; display: flex; justify-content: center; flex-wrap: wrap; }
-        .hero-title span { display: inline-block; background: linear-gradient(to bottom, #ffffff 30%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6)); opacity: 0; animation: letterFadeInSmooth 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .hero-title span:nth-child(1) { animation-delay: 0.05s; }
-        .hero-title span:nth-child(2) { animation-delay: 0.12s; }
-        .hero-title span:nth-child(3) { animation-delay: 0.19s; }
-        .hero-title span:nth-child(4) { animation-delay: 0.26s; }
-        .hero-title span:nth-child(5) { animation-delay: 0.33s; }
-        .hero-title span:nth-child(6) { animation-delay: 0.40s; }
-        .hero-title span:nth-child(7) { animation-delay: 0.47s; }
-
-        @keyframes letterFadeInSmooth { from { opacity: 0; transform: translateY(3px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        
-        .hero-subtitle { font-size: 1.2rem; margin-top: 25px; color: var(--accent-orange); letter-spacing: 5px; text-transform: uppercase; font-weight: 700; opacity: 0; animation: letterFadeInSmooth 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.65s; }
-        .hero-desc { color: var(--text-muted); max-width: 500px; margin: 25px auto 0 auto; font-size: 1.1rem; opacity: 0; animation: letterFadeInSmooth 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.75s; }
-
-        h2.section-heading { font-family: 'Syne', sans-serif; font-size: 2.8rem; margin-bottom: 60px; text-transform: uppercase; border-left: 4px solid var(--accent-orange); padding-left: 20px; width: 100%; }
-        
-        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; width: 100%; }
-        
-        .software-card { 
-            background: rgba(10, 15, 18, 0.25); backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%);
-            border: 1.5px solid rgba(255, 255, 255, 0.09); padding: 50px 25px; border-radius: 20px; text-align: center; position: relative; overflow: hidden;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease, box-shadow 0.5s ease;
+        /* Estilo del Arsenal */
+        h2.section-heading { 
+            font-family: 'Syne', sans-serif; 
+            font-size: 2.8rem; 
+            margin-bottom: 60px; 
+            text-transform: uppercase; 
+            border-left: 4px solid var(--accent-orange); 
+            padding-left: 20px; 
+            width: 100%; 
         }
         
-        .software-card:hover { transform: translateY(-6px); background: rgba(0, 245, 255, 0.02); border-color: rgba(0, 245, 255, 0.6); box-shadow: 0 22px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 245, 255, 0.15); }
-        .software-card i { font-size: 3.2rem; color: #fff; margin-bottom: 20px; display: block; transition: transform 0.4s ease; }
-        .software-card:hover i { transform: scale(1.05) translateY(-2px); }
-        .software-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
-        .software-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.4; }
+        .software-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 30px; 
+            width: 100%; 
+        }
+        
+        .software-card { 
+            background: rgba(10, 15, 18, 0.25); 
+            backdrop-filter: blur(24px);
+            border: 1.5px solid rgba(255, 255, 255, 0.09); 
+            padding: 50px 25px; 
+            border-radius: 20px; 
+            text-align: center; 
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
+        }
+        
+        .software-card:hover { 
+            transform: translateY(-6px); 
+            border-color: rgba(255, 255, 255, 0.3); 
+        }
+
+        /* Iconos */
+        .software-card i { font-size: 3.2rem; color: #fff; margin-bottom: 20px; display: block; }
+        .software-card svg { display: block; margin: 0 auto 20px auto; }
+
+        .software-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+        .software-card p { color: var(--text-muted); font-size: 0.88rem; }
     </style>
 </head>
 <body>
-
-    <div class="liquid-bg-overlay"></div>
-    <div class="noise-overlay"></div>
-    <div class="glow-orange"></div>
-    <div class="glow-cyan"></div>
-    <div class="bottom-shadow"></div>
-    <div class="central-strip"></div>
-
-    <section id="hero">
-        <div class="container">
-            <h1 class="hero-title">
-                <span>O</span><span>T</span><span>T</span><span>A</span><span>R</span><span>U</span><span>M</span>
-            </h1>
-            <p class="hero-subtitle">3D Artist & Digital Alchemist</p>
-            <p class="hero-desc">+5 years of experience sculpting high-fidelity visual realities and interruptions.</p>
-        </div>
-    </section>
 
     <section id="arsenal">
         <div class="container">
             <h2 class="section-heading">The Technical Arsenal</h2>
             <div class="software-grid">
+                
                 <div class="software-card">
-                    <svg viewBox="0 0 24 24" fill="#E87D0D" width="50" height="50" style="display: block; margin: 0 auto 20px auto; transition: transform 0.4s ease;">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-11c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-4 4c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm6 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/>
+                    <svg viewBox="0 0 24 24" width="50" height="50" fill="#E87D0D">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10 5.523 0 10-4.477 10-10C22 6.477 17.523 2 12 2zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm0-13c-2.761 0-5 2.239-5 5s2.239 5 5 5 5-2.239 5-5-2.239-5-5-5zm0 8c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
                     </svg>
                     <h3>Blender</h3>
                     <p>Core 3D & Cycles/Eevee</p>
                 </div>
+
                 <div class="software-card">
                     <i class="fa-solid fa-spray-can"></i>
                     <h3>Substance</h3>
                     <p>Advanced PBR Texturing</p>
                 </div>
+
                 <div class="software-card">
                     <i class="fa-solid fa-layer-group"></i>
                     <h3>Photoshop</h3>
                     <p>Post-processing & Matte Painting</p>
                 </div>
+
                 <div class="software-card">
                     <i class="fa-solid fa-clapperboard"></i>
                     <h3>After Effects</h3>
                     <p>Compositing & Kinetic VFX</p>
                 </div>
+
             </div>
         </div>
     </section>
 
-    </body>
+</body>
 </html>
