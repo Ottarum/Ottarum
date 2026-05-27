@@ -1,120 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ottarum // 3D Digital Artist</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg-dark: #030708;
-            --accent-orange: #ff5f00;
-            --accent-cyan: #00f5ff;
-            --text-muted: #8a99ad;
-            --blender-color: #E87D0D;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            background-color: var(--bg-dark);
-            color: #ffffff;
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Elementos de fondo */
-        .liquid-bg-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 140vh; pointer-events: none; z-index: -3;
-            background-size: cover; background-position: center top; background-repeat: no-repeat;
-            opacity: 1;
-        }
-
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 60px; width: 100%; position: relative; z-index: 2; }
-        section { padding: 120px 0; min-height: 100vh; display: flex; align-items: center; width: 100%; }
-
-        /* Estilo del Arsenal */
-        h2.section-heading { 
-            font-family: 'Syne', sans-serif; 
-            font-size: 2.8rem; 
-            margin-bottom: 60px; 
-            text-transform: uppercase; 
-            border-left: 4px solid var(--accent-orange); 
-            padding-left: 20px; 
-            width: 100%; 
-        }
-        
-        .software-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-            gap: 30px; 
-            width: 100%; 
-        }
-        
-        .software-card { 
-            background: rgba(10, 15, 18, 0.25); 
-            backdrop-filter: blur(24px);
-            border: 1.5px solid rgba(255, 255, 255, 0.09); 
-            padding: 50px 25px; 
-            border-radius: 20px; 
-            text-align: center; 
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
-        }
-        
-        .software-card:hover { 
-            transform: translateY(-6px); 
-            border-color: rgba(255, 255, 255, 0.3); 
-        }
-
-        /* Iconos */
-        .software-card i { font-size: 3.2rem; color: #fff; margin-bottom: 20px; display: block; }
-        .software-card svg { display: block; margin: 0 auto 20px auto; }
-
-        .software-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
-        .software-card p { color: var(--text-muted); font-size: 0.88rem; }
-    </style>
-</head>
-<body>
-
-    <section id="arsenal">
-        <div class="container">
-            <h2 class="section-heading">The Technical Arsenal</h2>
-            <div class="software-grid">
-                
-                <div class="software-card">
-                    <svg viewBox="0 0 24 24" width="50" height="50" fill="#E87D0D">
-                        <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10 5.523 0 10-4.477 10-10C22 6.477 17.523 2 12 2zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm0-13c-2.761 0-5 2.239-5 5s2.239 5 5 5 5-2.239 5-5-2.239-5-5-5zm0 8c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
-                    </svg>
-                    <h3>Blender</h3>
-                    <p>Core 3D & Cycles/Eevee</p>
-                </div>
-
-                <div class="software-card">
-                    <i class="fa-solid fa-spray-can"></i>
-                    <h3>Substance</h3>
-                    <p>Advanced PBR Texturing</p>
-                </div>
-
-                <div class="software-card">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <h3>Photoshop</h3>
-                    <p>Post-processing & Matte Painting</p>
-                </div>
-
-                <div class="software-card">
-                    <i class="fa-solid fa-clapperboard"></i>
-                    <h3>After Effects</h3>
-                    <p>Compositing & Kinetic VFX</p>
-                </div>
-
+<section id="arsenal">
+    <div class="container">
+        <h2 class="section-heading">The Technical Arsenal</h2>
+        <div class="software-grid">
+            <div class="software-card">
+                <i class="fa-solid fa-cube"></i>
+                <h3>Blender</h3>
+                <p>Core 3D & Cycles/Eevee</p>
+            </div>
+            <div class="software-card">
+                <i class="fa-solid fa-spray-can"></i>
+                <h3>Substance</h3>
+                <p>Advanced PBR Texturing</p>
+            </div>
+            <div class="software-card">
+                <i class="fa-solid fa-layer-group"></i>
+                <h3>Photoshop</h3>
+                <p>Post-processing & Matte Painting</p>
+            </div>
+            <div class="software-card">
+                <i class="fa-solid fa-clapperboard"></i>
+                <h3>After Effects</h3>
+                <p>Compositing & Kinetic VFX</p>
             </div>
         </div>
-    </section>
-
-</body>
-</html>
+    </div>
+</section>
