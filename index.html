@@ -1,27 +1,116 @@
-<section id="arsenal">
-    <div class="container">
-        <h2 class="section-heading">The Technical Arsenal</h2>
-        <div class="software-grid">
-            <div class="software-card">
-                <i class="fa-solid fa-cube"></i>
-                <h3>Blender</h3>
-                <p>Core 3D & Cycles/Eevee</p>
-            </div>
-            <div class="software-card">
-                <i class="fa-solid fa-spray-can"></i>
-                <h3>Substance</h3>
-                <p>Advanced PBR Texturing</p>
-            </div>
-            <div class="software-card">
-                <i class="fa-solid fa-layer-group"></i>
-                <h3>Photoshop</h3>
-                <p>Post-processing & Matte Painting</p>
-            </div>
-            <div class="software-card">
-                <i class="fa-solid fa-clapperboard"></i>
-                <h3>After Effects</h3>
-                <p>Compositing & Kinetic VFX</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ottarum // The Technical Arsenal</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Estilos base */
+        body {
+            background-color: #030708; /* Fondo oscuro */
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        /* Título de la sección */
+        .section-heading {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            border-left: 4px solid #ff5f00; /* Línea naranja */
+            padding-left: 20px;
+        }
+
+        /* Cuadrícula de software */
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        /* Tarjetas estilo cristal (Glassmorphism) */
+        .software-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .software-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+        }
+
+        /* Iconos */
+        .software-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            color: #ffffff;
+        }
+
+        .software-card h3 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .software-card p {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+
+    <section id="arsenal">
+        <div class="container">
+            <h2 class="section-heading">The Technical Arsenal</h2>
+            
+            <div class="software-grid">
+                <div class="software-card">
+                    <i class="fa-solid fa-cube"></i>
+                    <h3>Blender</h3>
+                    <p>Core 3D & Cycles/Eevee</p>
+                </div>
+
+                <div class="software-card">
+                    <i class="fa-solid fa-spray-can"></i>
+                    <h3>Substance</h3>
+                    <p>Advanced PBR Texturing</p>
+                </div>
+
+                <div class="software-card">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3>Photoshop</h3>
+                    <p>Post-processing & Matte Painting</p>
+                </div>
+
+                <div class="software-card">
+                    <i class="fa-solid fa-clapperboard"></i>
+                    <h3>After Effects</h3>
+                    <p>Compositing & Kinetic VFX</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+</body>
+</html>
