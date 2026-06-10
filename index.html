@@ -1,163 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ottarum // 3D Digital Artist</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
-    
-    <style>
-        :root {
-            --bg-dark: #030708;
-            --accent-orange: #ff5f00;
-            --accent-cyan: #00f5ff;
-            --text-muted: #8a99ad;
-        }
+<script>
+        // 1. Inicializamos el contexto una sola vez, fuera de las funciones
+        let audioCtx;
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            background-color: var(--bg-dark);
-            color: #ffffff;
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .liquid-bg-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 140vh; pointer-events: none; z-index: -3;
-            background-image: url('figuenoise.webp'); background-size: cover;
-            background-position: center top; background-repeat: no-repeat;
-            animation: parallaxScroll linear both; animation-timeline: scroll(root); animation-range: start end;
-        }
-
-        @keyframes parallaxScroll { from { transform: translateY(0); } to { transform: translateY(-20vh); } }
-
-        .glow-orange { position: fixed; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255, 95, 0, 0.12) 0%, transparent 70%); top: -200px; left: -100px; z-index: -2; pointer-events: none; filter: blur(100px); }
-        .glow-cyan { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0, 245, 255, 0.08) 0%, transparent 70%); bottom: -100px; right: -100px; z-index: -2; pointer-events: none; filter: blur(100px); }
-
-        .bottom-shadow { position: fixed; bottom: 0; left: 0; width: 100%; height: 35vh; background: linear-gradient(to bottom, rgba(3, 7, 8, 0) 0%, var(--bg-dark) 100%); pointer-events: none; z-index: -2; }
-
-        .central-strip {
-            position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1300px; height: 100vh; z-index: -1; pointer-events: none;
-            border-left: 1px solid rgba(255, 255, 255, 0.02); border-right: 1px solid rgba(255, 255, 255, 0.02);
-            background: linear-gradient(to right, rgba(3, 7, 8, 0.5) 0%, rgba(3, 7, 8, 0.05) 20%, rgba(3, 7, 8, 0.05) 80%, rgba(3, 7, 8, 0.5) 100%);
-            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 60px; width: 100%; position: relative; z-index: 2; }
-        section { padding: 120px 0; min-height: 100vh; display: flex; align-items: center; position: relative; width: 100%; }
-        #hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0; }
-
-        .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(3.5rem, 8vw, 7.8rem); font-weight: 800; line-height: 0.85; text-transform: uppercase; letter-spacing: -3px; width: 100%; display: flex; justify-content: center; flex-wrap: wrap; }
-        .hero-title span { display: inline-block; background: linear-gradient(to bottom, #ffffff 30%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6)); opacity: 0; animation: letterFadeInSmooth 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        
-        .hero-title span:nth-child(1) { animation-delay: 0.05s; }
-        .hero-title span:nth-child(2) { animation-delay: 0.12s; }
-        .hero-title span:nth-child(3) { animation-delay: 0.19s; }
-        .hero-title span:nth-child(4) { animation-delay: 0.26s; }
-        .hero-title span:nth-child(5) { animation-delay: 0.33s; }
-        .hero-title span:nth-child(6) { animation-delay: 0.40s; }
-        .hero-title span:nth-child(7) { animation-delay: 0.47s; }
-
-        @keyframes letterFadeInSmooth { from { opacity: 0; transform: translateY(3px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        
-        .hero-subtitle { font-size: 1.2rem; margin-top: 25px; color: var(--accent-orange); letter-spacing: 5px; text-transform: uppercase; font-weight: 700; opacity: 0; animation: letterFadeInSmooth 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.65s; }
-        .hero-desc { color: var(--text-muted); max-width: 500px; margin: 25px auto 0 auto; font-size: 1.1rem; opacity: 0; animation: letterFadeInSmooth 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.75s; }
-
-        h2.section-heading { font-family: 'Syne', sans-serif; font-size: 2.8rem; margin-bottom: 60px; text-transform: uppercase; border-left: 4px solid var(--accent-orange); padding-left: 20px; width: 100%; }
-        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; width: 100%; }
-        
-        .software-card { 
-            background: rgba(10, 15, 18, 0.25); backdrop-filter: blur(24px) saturate(160%); border: 1.5px solid rgba(255, 255, 255, 0.09);
-            padding: 50px 25px; border-radius: 20px; text-align: center; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
-        }
-        
-        .software-card:hover { transform: translateY(-6px); background: rgba(0, 245, 255, 0.02); border-color: rgba(0, 245, 255, 0.6); }
-        .software-card i { font-size: 3.2rem; color: #fff; margin-bottom: 20px; display: block; }
-        .software-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
-        .software-card p { color: var(--text-muted); font-size: 0.88rem; }
-
-        .project-row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; margin-bottom: 100px; align-items: center; width: 100%; }
-        .media-box { background: #0b1112; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); aspect-ratio: 16/9; }
-        .media-box img { width: 100%; height: 100%; object-fit: cover; }
-        .tech-data { padding: 35px; background: rgba(5, 9, 10, 0.4); backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid rgba(255,255,255,0.04); border-left: 4px solid var(--accent-cyan); }
-        .tech-data h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; text-transform: uppercase; margin-bottom: 15px; }
-        .tech-data li { margin-bottom: 10px; color: var(--text-muted); }
-
-        .wallpaper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 35px; width: 100%; }
-        .wallpaper-card { border-radius: 16px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 9/16; }
-        .wallpaper-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .wallpaper-card:hover img { transform: scale(1.04); }
-        
-        .btn-download { background: var(--accent-orange); color: #fff; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; cursor: pointer; }
-        .btn-download:hover { background: #fff; color: var(--bg-dark); }
-
-        footer { padding: 100px 0 60px 0; text-align: center; }
-        .social-links a { color: rgba(255,255,255,0.6); font-size: 1.8rem; margin: 0 20px; transition: 0.3s; }
-        .social-links a:hover { color: var(--accent-orange); }
-    </style>
-</head>
-<body>
-
-    <div class="liquid-bg-overlay"></div>
-    <div class="glow-orange"></div>
-    <div class="glow-cyan"></div>
-    <div class="bottom-shadow"></div>
-    <div class="central-strip"></div>
-
-    <section id="hero">
-        <div class="container">
-            <h1 class="hero-title">
-                <span>O</span><span>T</span><span>T</span><span>A</span><span>R</span><span>U</span><span>M</span>
-            </h1>
-            <p class="hero-subtitle">3D Artist & Digital Alchemist</p>
-            <p class="hero-desc">+5 years of experience sculpting high-fidelity visual realities and experiences.</p>
-        </div>
-    </section>
-
-    <section id="arsenal">
-        <div class="container">
-            <h2 class="section-heading">The Technical Arsenal</h2>
-            <div class="software-grid">
-                <div class="software-card interactive">
-                    <i class="fa-solid fa-cube"></i>
-                    <h3>Blender</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Sistema de audio sintetizado que no depende de archivos externos
-        const playTone = (freq, type, duration) => {
-            const ctx = new (window.AudioContext || window.webkitAudioContext)();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            
-            osc.type = type;
-            osc.frequency.setValueAtTime(freq, ctx.currentTime);
-            gain.gain.setValueAtTime(0.1, ctx.currentTime);
-            
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            
-            osc.start();
-            gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + duration);
-            osc.stop(ctx.currentTime + duration);
+        const initAudio = () => {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            // Esto "despierta" el contexto bloqueado por el navegador
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
         };
 
-        // Escucha interacciones
+        const playTone = (freq, type, duration) => {
+            // Aseguramos que el contexto esté activo
+            initAudio();
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+            osc.stop(audioCtx.currentTime + duration);
+        };
+
+        // 2. Escucha de interacciones
         document.querySelectorAll('.interactive, .btn-download, .social-links a').forEach(el => {
             el.addEventListener('mouseenter', () => playTone(440, 'sine', 0.1));
             el.addEventListener('click', () => playTone(880, 'square', 0.2));
         });
+
+        // 3. Desbloqueo forzado al primer clic en cualquier parte
+        window.addEventListener('click', initAudio, { once: true });
     </script>
-</body>
-</html>
