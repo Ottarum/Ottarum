@@ -130,27 +130,29 @@
                     <i class="fa-solid fa-cube"></i>
                     <h3>Blender</h3>
                 </div>
-                </div>
+            </div>
         </div>
     </section>
 
     <script>
-        // Configuración de sonidos con Howler.js
         const hoverSound = new Howl({
-            src: ['https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'],
-            volume: 0.2
+            src: ['https://res.cloudinary.com/dgn6gq5qt/video/upload/v1617260000/click_hover.mp3'],
+            volume: 0.5
         });
 
         const clickSound = new Howl({
-            src: ['https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'],
-            volume: 0.3
+            src: ['https://res.cloudinary.com/dgn6gq5qt/video/upload/v1617260000/click_effect.mp3'],
+            volume: 0.5
         });
 
-        // Aplicar a elementos con clase 'interactive'
         document.querySelectorAll('.interactive, .btn-download, .social-links a').forEach(el => {
             el.addEventListener('mouseenter', () => hoverSound.play());
             el.addEventListener('click', () => clickSound.play());
         });
+
+        window.addEventListener('click', () => {
+            Howler.ctx.resume();
+        }, { once: true });
     </script>
 </body>
 </html>
