@@ -135,24 +135,29 @@
     </section>
 
     <script>
-        const hoverSound = new Howl({
-            src: ['https://res.cloudinary.com/dgn6gq5qt/video/upload/v1617260000/click_hover.mp3'],
-            volume: 0.5
-        });
+        // Sistema de audio sintetizado que no depende de archivos externos
+        const playTone = (freq, type, duration) => {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, ctx.currentTime);
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.start();
+            gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + duration);
+            osc.stop(ctx.currentTime + duration);
+        };
 
-        const clickSound = new Howl({
-            src: ['https://res.cloudinary.com/dgn6gq5qt/video/upload/v1617260000/click_effect.mp3'],
-            volume: 0.5
-        });
-
+        // Escucha interacciones
         document.querySelectorAll('.interactive, .btn-download, .social-links a').forEach(el => {
-            el.addEventListener('mouseenter', () => hoverSound.play());
-            el.addEventListener('click', () => clickSound.play());
+            el.addEventListener('mouseenter', () => playTone(440, 'sine', 0.1));
+            el.addEventListener('click', () => playTone(880, 'square', 0.2));
         });
-
-        window.addEventListener('click', () => {
-            Howler.ctx.resume();
-        }, { once: true });
     </script>
 </body>
 </html>
